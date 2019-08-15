@@ -32,10 +32,23 @@ RUN apt-get install -y ros-kinetic-map-server
 RUN apt-get install -y ros-kinetic-amcl
 RUN apt-get install -y ros-kinetic-teleop-twist-joy
 
+#install hsr
+RUN apt-get update && apt-get install -y wget
+RUN apt-get update && apt-get install -y apt-transport-https
+RUN apt-get install -y net-tools
+RUN echo "deb https://hsr-user:jD3k4G2e@packages.hsr.io/ros/ubuntu `lsb_release -cs` main" > /etc/apt/sources.list.d/tmc.list
+RUN echo "deb https://hsr-user:jD3k4G2e@packages.hsr.io/tmc/ubuntu `lsb_release -cs` multiverse main" >> /etc/apt/sources.list.d/tmc.list
+RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list
+RUN wget https://hsr-user:jD3k4G2e@packages.hsr.io/tmc.key -O - | apt-key add -
+RUN wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add -
+RUN apt-get update && apt-get install -y ros-kinetic-tmc-desktop-full
 
 
-# set ros
+# set hsr
 RUN echo "export ROS_IP=192.168.1.218.">> ~/.bashrc
 RUN echo "export ROS_HOME=~/.ros">> ~/.bashrc
+
+
+# set catkin
 RUN echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc
 RUN echo "export ROS_MASTER_URI=http://192.168.1.221:11311" >> ~/.bashrc

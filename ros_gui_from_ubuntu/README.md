@@ -33,19 +33,20 @@ ubuntuをベースにROSとGUI表示の環境を構築するdockerfileです。
     * 確認
         ```sh 
         $ docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi
-* catkin_ws/srcをホストマシンに作成
-* catkin_ws/srcにROS用のパッケージをコピー
-* dockerfileの72行目をコメントアウト
-* ./build.shでdocker build
-* ./run.shでdocker run
-* catkin_wsのcatkin_init~~
-* catkin_make
-
-* dockerfileの72行目のコメントアウトを解除
-* ./build.shでdocker build
-* ./run.shでdocker run
-
-* 使用状況に応じて、dockerfileの後半部分のrosの設定を変更
+* ホストマシンにROS用のパッケージのセッティング
+    * catkin_ws/srcをホストマシンに作成
+    * catkin_ws/srcにROS用のパッケージをコピー
+    * dockerfileの72行目をコメントアウト(まだ/catkin_ws/devel/setup.bashが存在しないため)
+    * 一旦 docker run
+        * ./build.shでdocker build
+        * ./run.shでdocker run
+    * catkin_wsのcatkin_init_workspace
+    * catkin_make(まだ/catkin_ws/devel/setup.bashが作成される)
+* ROS用のパッケージのセッティング後
+    * dockerfileの72行目のコメントアウトを解除
+    * ./build.shでdocker build
+    * ./run.shでdocker run
+    * 使用状況に応じて、dockerfileの後半部分のrosの設定を変更
 
 ## Author
 [chakio](https://github.com/chakio)

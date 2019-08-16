@@ -2,6 +2,10 @@
 # generated from docker_images/create_ros_core_image.Dockerfile.em
 FROM ubuntu:xenial
 
+#######################################################################
+##                            ros install                            ##
+#######################################################################
+
 # install packages
 RUN apt-get update && apt-get install -q -y \
     dirmngr \
@@ -42,6 +46,10 @@ COPY ./ros_entrypoint.sh /
 ENTRYPOINT ["/ros_entrypoint.sh"]
 CMD ["bash"]
 
+#######################################################################
+##                       install nvidia docker                       ##
+#######################################################################
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
        pkg-config \
        libxau-dev \
@@ -65,3 +73,11 @@ ENV NVIDIA_VISIBLE_DEVICES \
    ${NVIDIA_VISIBLE_DEVICES:-all}
 ENV NVIDIA_DRIVER_CAPABILITIES \
    ${NVIDIA_DRIVER_CAPABILITIES:+$NVIDIA_DRIVER_CAPABILITIES,}graphics
+
+#######################################################################
+##                           ros settings                            ##
+#######################################################################
+#RUN echo "export ROS_IP=192.168.1.218.">> ~/.bashrc
+#RUN echo "export ROS_HOME=~/.ros">> ~/.bashrc
+#RUN echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc
+#RUN echo "export ROS_MASTER_URI=http://192.168.1.221:11311" >> ~/.bashrc

@@ -51,11 +51,10 @@ ENV PYTHONPATH /usr/local/python/openpose
 RUN export PATH="/usr/local/cuda-8.0/bin:$PATH"
 RUN export LD_LIBRARY_PATH="/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH"
 
-WORKDIR /root
 
 # openpose
 RUN git clone https://github.com/CMU-Perceptual-Computing-Lab/openpose.git
-WORKDIR /root/openpose
+WORKDIR /openpose
 RUN git checkout tags/v1.4.0 \
     && git submodule update --init --recursive \
     && sed -i -e "s/ubuntu\/Makefile.example/ubuntu_deprecated\/Makefile.example/g" ubuntu_deprecated/install_openpose_if_cuda8.sh \
@@ -73,7 +72,7 @@ RUN cd build && sudo make install
 #######################################################################
 ##                            ros install                            ##
 #######################################################################
-WORKDIR /root
+WORKDIR /
 # install packages
 RUN apt-get update && apt-get install -q -y \
     dirmngr \

@@ -5,7 +5,8 @@ docker run -it \
 --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
 --env="QT_X11_NO_MITSHM=1" \
 --rm \
+-v "/home/$(whoami)/catkin_ws/:/catkin_ws/" \
 -v $HOME/.Xauthority:/root/.Xauthority \
 --privileged \
 --net host \
-cuda:openpose \
+ros:ros-openpose \

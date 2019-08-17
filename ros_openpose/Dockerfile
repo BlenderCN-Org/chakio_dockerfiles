@@ -1,11 +1,79 @@
 # This is an auto generated Dockerfile for ros:ros-core
 # generated from docker_images/create_ros_core_image.Dockerfile.em
-FROM ubuntu:xenial
+FROM nvidia/cuda:8.0-cudnn5-devel
 
+#######################################################################
+##                          openpose install                         ##
+#######################################################################
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update -y \
+    && apt-get install -y \
+    build-essential \
+    apt-utils \
+    openssl \
+    git \
+    cmake \
+    git \
+    curl \
+    vim \
+    ca-certificates \
+    libjpeg-dev \
+    libfreetype6-dev \
+    zlib1g-dev \
+    openssh-client \
+    bash \
+    g++ \
+    tzdata \
+    mariadb-client \
+    gcc \
+    xz-utils \
+    file \
+    sudo \
+    tmux \
+    libmecab-dev \
+    wget \
+    unzip \
+    lsof \
+    lsb-core \
+    libatlas-base-dev \
+    libopencv-dev \
+    python-opencv \
+    python-pip \
+    python3-pip \
+    ffmpeg \
+    zip \
+    cython \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV PYTHONPATH /usr/local/python/openpose
+RUN export PATH="/usr/local/cuda-8.0/bin:$PATH"
+RUN export LD_LIBRARY_PATH="/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH"
+
+WORKDIR /root
+
+# openpose
+RUN git clone https://github.com/CMU-Perceptual-Computing-Lab/openpose.git
+WORKDIR /root/openpose
+RUN git checkout tags/v1.4.0 \
+    && git submodule update --init --recursive \
+    && sed -i -e "s/ubuntu\/Makefile.example/ubuntu_deprecated\/Makefile.example/g" ubuntu_deprecated/install_openpose_if_cuda8.sh \
+    && sed -i -e "s/ubuntu\/Makefile.config/ubuntu_deprecated\/Makefile.config/g" ubuntu_deprecated/install_openpose_if_cuda8.sh \
+    # && sed -i -e "s/git submodule update --init --recursive//g" ubuntu/install_caffe_and_openpose_JetsonTX2_JetPack3.1.sh \
+    && sed -i -e "s/ubuntu/ubuntu_deprecated/g" ubuntu_deprecated/install_caffe_and_openpose_if_cuda8.sh \
+    && sync \
+    && sleep 1 \
+    && bash ./ubuntu_deprecated/install_caffe_and_openpose_if_cuda8.sh
+
+# python API
+RUN cd build && cmake -DBUILD_PYTHON=true ..
+RUN cd build && make -j `nproc`
+RUN cd build && sudo make install
 #######################################################################
 ##                            ros install                            ##
 #######################################################################
-
+WORKDIR /root
 # install packages
 RUN apt-get update && apt-get install -q -y \
     dirmngr \

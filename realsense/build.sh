@@ -1,0 +1,1 @@
+docker build --tag realsense:1.4 .

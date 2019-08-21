@@ -1,0 +1,126 @@
+
+<launch>
+    <arg name="camera"              default="front_realsense"/>
+
+    //-----------------------------------------------------------------------------------
+    //              pointcloud to laser scan    
+    //-----------------------------------------------------------------------------------
+    // Front Realsense is equiped at 0.6 m height from the ground
+    //-----------------------------------------------------------------------------------
+    <!-- 0.6 m height from ground -->
+    <node pkg="tf" type="static_transform_publisher" name="scan_h06_tf_broadcaster" args="0 0 0 0 0 0 camera_link scan_h06_link 400" />
+    <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan_front_h06">
+
+        <remap from="cloud_in" to="/camera/depth/color/points"/>
+        <remap from="scan" to="/camera/scan_h06"/>
+        <rosparam>
+            target_frame:           camera_link     #scan_h06_link    # Leave disabled to output scan in pointcloud frame
+            transform_tolerance:    0.01
+            max_height:             0.2
+            min_height:             -0.2
+
+            angle_min:              -1.5708         # -M_PI/2
+            angle_max:              1.5708          # M_PI/2
+            angle_increment:        0.0087          # M_PI/360.0
+            scan_time:              0.3333
+            range_min:              0.2             # 0.45
+            range_max:              10.0            # 4.0
+            use_inf:                true
+            inf_epsilon:            1.0
+
+            # Concurrency level, affects number of pointclouds queued for processing and number of threads used
+            # 0 : Detect number of cores
+            # 1 : Single threaded
+            # 2->inf : Parallelism level
+            concurrency_level: 1
+        </rosparam>
+    </node>
+
+    <!-- 0.4 m height from ground -->
+    <node pkg="tf" type="static_transform_publisher" name="scan_h04_tf_broadcaster" args="0 0 -0.2 0 0 0 camera_link scan_h04_link 400" />
+    <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan_front_h04">
+
+        <remap from="cloud_in" to="/camera/depth/color/points"/>
+        <remap from="scan" to="/camera/scan_h04"/>
+        <rosparam>
+            target_frame:           camera_link     #scan_h04_link    # Leave disabled to output scan in pointcloud frame
+            transform_tolerance:    0.01
+            max_height:             -0.1
+            min_height:             -0.3
+
+            angle_min:              -1.5708         # -M_PI/2
+            angle_max:              1.5708          # M_PI/2
+            angle_increment:        0.0087          # M_PI/360.0
+            scan_time:              0.3333
+            range_min:              0.2             # 0.45
+            range_max:              10.0            # 4.0
+            use_inf:                true
+            inf_epsilon:            1.0
+
+            # Concurrency level, affects number of pointclouds queued for processing and number of threads used
+            # 0 : Detect number of cores
+            # 1 : Single threaded
+            # 2->inf : Parallelism level
+            concurrency_level: 1
+        </rosparam>
+    </node>
+
+    <!-- 0.3 m height from ground -->
+    <node pkg="tf" type="static_transform_publisher" name="scan_h03_tf_broadcaster" args="0 0 -0.3 0 0 0 camera_link scan_h03_link 400" />
+    <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan_front_h03">
+
+        <remap from="cloud_in" to="/camera/depth/color/points"/>
+        <remap from="scan" to="/camera/scan_h03"/>
+        <rosparam>
+            target_frame:           camera_link     #scan_h03_link    # Leave disabled to output scan in pointcloud frame
+            transform_tolerance:    0.01
+            max_height:             -0.2
+            min_height:             -0.4
+
+            angle_min:              -1.5708         # -M_PI/2
+            angle_max:              1.5708          # M_PI/2
+            angle_increment:        0.0087          # M_PI/360.0
+            scan_time:              0.3333
+            range_min:              0.2             # 0.45
+            range_max:              10.0            # 4.0
+            use_inf:                true
+            inf_epsilon:            1.0
+
+            # Concurrency level, affects number of pointclouds queued for processing and number of threads used
+            # 0 : Detect number of cores
+            # 1 : Single threaded
+            # 2->inf : Parallelism level
+            concurrency_level: 1
+        </rosparam>
+    </node>
+
+    <!-- 0.2 m height from ground -->
+    <node pkg="tf" type="static_transform_publisher" name="scan_h02_tf_broadcaster" args="0 0 -0.4 0 0 0 camera_link scan_h02_link 400" />
+    <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan_front_h02">
+
+        <remap from="cloud_in" to="/camera/depth/color/points"/>
+        <remap from="scan" to="/camera/scan_h02"/>
+        <rosparam>
+            target_frame:           camera_link     #scan_h02_link    # Leave disabled to output scan in pointcloud frame
+            transform_tolerance:    0.01
+            max_height:             -0.3
+            min_height:             -0.5
+
+            angle_min:              -1.5708         # -M_PI/2
+            angle_max:              1.5708          # M_PI/2
+            angle_increment:        0.0087          # M_PI/360.0
+            scan_time:              0.3333
+            range_min:              0.2             # 0.45
+            range_max:              10.0            # 4.0
+            use_inf:                true
+            inf_epsilon:            1.0
+
+            # Concurrency level, affects number of pointclouds queued for processing and number of threads used
+            # 0 : Detect number of cores
+            # 1 : Single threaded
+            # 2->inf : Parallelism level
+            concurrency_level: 1
+        </rosparam>
+    </node>
+
+</launch>

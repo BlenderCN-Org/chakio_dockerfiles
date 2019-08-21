@@ -1,1 +1,1 @@
-docker build --tag ros:ros-gui-from-ubuntu .
+docker build --tag realsense:1.4  .

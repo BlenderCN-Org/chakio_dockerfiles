@@ -60,6 +60,8 @@ COPY /packages/realsense /home/catkin_ws/src/realsense
 
 RUN /bin/bash -c "source /opt/ros/kinetic/setup.bash; catkin build" 
 
+RUN echo "export PS1='\[\e[1;34m\]DOCKER REALSENSE\[\e[0m\] \u:\w\$'" >> ~/.bashrc
+
 ####################################################################################
 ##                              docker run後の処理用                              ##
 ####################################################################################

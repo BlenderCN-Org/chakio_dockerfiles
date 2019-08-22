@@ -1,7 +1,6 @@
 # This is an auto generated Dockerfile for ros:ros-core
 # generated from docker_images/create_ros_core_image.Dockerfile.em
 FROM ubuntu:xenial
-
 #######################################################################
 ##                            ros install                            ##
 #######################################################################
@@ -41,7 +40,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # setup entrypoint
-COPY /ros_entrypoint.sh
+COPY ./ros_entrypoint.sh /
 
 ENTRYPOINT ["/ros_entrypoint.sh"]
 CMD ["bash"]
@@ -83,21 +82,12 @@ RUN apt-get install -y libopencv-dev \
       ros-kinetic-map-server \
       ros-kinetic-amcl \
       ros-kinetic-teleop-twist-joy \
-      ros-kinetic-ar-track-alvar \
-
-#######################################################################
-##                          make catkin_ws                           ##
-#######################################################################
-
-# RUN echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc
-# COPY ./catkin_entrypoint.sh /
-# ENTRYPOINT ["/catkin_entrypoint.sh"]
-# CMD ["bash"]
-
+      ros-kinetic-ar-track-alvar
 #######################################################################
 ##                           ros settings                            ##
 #######################################################################
+RUN echo "export ROS_HOME=~/.ros">> ~/.bashrc
+RUN echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc
+RUN echo "export PS1='\[\e[1;31;40m\]DOCKER ROS_DEVELOP\[\e[0m\] \u:\w\$'" >> ~/.bashrc
 #RUN echo "export ROS_IP=192.168.1.218.">> ~/.bashrc
-#RUN echo "export ROS_HOME=~/.ros">> ~/.bashrc
-#RUN echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc
 #RUN echo "export ROS_MASTER_URI=http://192.168.1.221:11311" >> ~/.bashrc

@@ -1,3 +1,4 @@
+sudo chmod 777 /home/$(whoami)/chakio_ros_ws/*
 xhost +local:user
 docker run -it \
 --runtime=nvidia \

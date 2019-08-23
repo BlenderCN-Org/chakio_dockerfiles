@@ -82,12 +82,12 @@ RUN apt-get install -y libopencv-dev \
       ros-kinetic-map-server \
       ros-kinetic-amcl \
       ros-kinetic-teleop-twist-joy \
-      ros-kinetic-ar-track-alvar
+      ros-kinetic-camera-calibration
 #######################################################################
 ##                           ros settings                            ##
 #######################################################################
 RUN echo "export ROS_HOME=~/.ros">> ~/.bashrc
 RUN echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc
-RUN echo "export PS1='\[\e[1;31;40m\]DOCKER ROS_DEVELOP\[\e[0m\] \u:\w\$'" >> ~/.bashrc
+RUN echo "export PS1='\[\e[1;31;40m\]DOCKER ROS_DEVELOP\[\e[0m\] \u:\w\$ '">> ~/.bashrc
 #RUN echo "export ROS_IP=192.168.1.218.">> ~/.bashrc
 #RUN echo "export ROS_MASTER_URI=http://192.168.1.221:11311" >> ~/.bashrc

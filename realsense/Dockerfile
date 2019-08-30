@@ -67,9 +67,13 @@ RUN echo "export PS1='\[\e[1;34m\]DOCKER REALSENSE\[\e[0m\] \u:\w\$'" >> ~/.bash
 ####################################################################################
 
 # ROS MATERのIP設定 run.shで上書き可能
-ENV SERVER_IP 172.16.0.2
-ENV CLIENT_IP 172.16.0.3
+# ENV SERVER_IP 172.16.0.2
+# ENV CLIENT_IP 172.16.0.3
 
+RUN echo "alias double='roslaunch realsense2_camera rs_multiple_cameras.launch align_depth:=true camera1:=rs00 serial_no_camera1:=838212070676  camera2:=rs01 serial_no_camera2:=838212072328'">> ~/.bashrc
+RUN echo "alias triple='roslaunch realsense2_camera rs_triple_cameras.launch align_depth:=true camera1:=rs00 serial_no_camera1:=838212070676  camera2:=rs01 serial_no_camera2:=838212072328 camera3:=rs02 serial_no_camera3:=838212071329'" >> ~/.bashrc
+RUN echo "source /ros_setting.sh">> ~/.bashrc
 COPY /startup.sh /home/startup.sh
 RUN chmod 744 /home/startup.sh
 ENTRYPOINT ["/bin/bash"]
+

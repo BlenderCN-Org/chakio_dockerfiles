@@ -5,10 +5,12 @@ docker run -it \
     --privileged \
     --name realsense \
     --net host \
-    --env SERVER_IP=172.17.0.1 \
-    --env CLIENT_IP=172.17.0.2 \
+    -v "/$(pwd)/ros_setting.sh:/ros_setting.sh" \
     realsense:1.4 \
-    /home/startup.sh 
+    #/home/startup.sh
+    
+    #--env SERVER_IP=172.17.0.1 \
+    #--env CLIENT_IP=172.17.0.2 \ 
     #--net=ros_net \
     #--ip=${CLIENT_IP} \
     #

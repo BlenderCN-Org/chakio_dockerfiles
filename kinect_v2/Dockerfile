@@ -130,5 +130,5 @@ RUN echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc
 #######################################################################
 ##                           ros settings                            ##
 #######################################################################
-RUN echo "export PS1='\[\e[1;32;40m\]DOCKER Kinect_v2\[\e[0m\] \u:\w\$ '">> ~/.bashrc
+RUN echo "export PS1='\[\e[1;31;40m\]DOCKER Kinect_v2\[\e[0m\] \u:\w\$ '">> ~/.bashrc
 RUN echo "source /ros_setting.sh">> ~/.bashrc

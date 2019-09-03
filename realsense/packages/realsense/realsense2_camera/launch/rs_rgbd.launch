@@ -38,7 +38,7 @@ Processing enabled by this node:
 -->
 
 <launch>
-  <arg name="camera"              default="camera"/>
+  <arg name="camera"              default="env_cam00"/>
   <arg name="tf_prefix"           default="$(arg camera)"/>
 
   <!-- Camera device specific arguments -->

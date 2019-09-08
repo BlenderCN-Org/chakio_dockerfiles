@@ -20,7 +20,7 @@
   <arg name="queue_size"        default="5"/>
   <arg name="bilateral_filter"  default="true"/>
   <arg name="edge_aware_filter" default="true"/>
-  <arg name="worker_threads"    default="4"/>
+  <arg name="worker_threads"    default="6"/>
   <arg name="machine"           default="localhost"/>
   <arg name="start_manager"     default="true"/>
   <arg name="use_machine"       default="true"/>
@@ -87,14 +87,14 @@
   </node>
 
   <!-- sd point cloud (512 x 424) -->
-  <node pkg="nodelet" type="nodelet" name="$(arg base_name1)_points_xyzrgb_sd" machine="$(arg machine)"
+  <!--node pkg="nodelet" type="nodelet" name="$(arg base_name1)_points_xyzrgb_sd" machine="$(arg machine)"
         args="load depth_image_proc/point_cloud_xyzrgb $(arg nodelet_manager1)" respawn="$(arg respawn)">
     <remap from="rgb/camera_info"             to="$(arg base_name1)/sd/camera_info"/>
     <remap from="rgb/image_rect_color"        to="$(arg base_name1)/sd/image_color_rect"/>
     <remap from="depth_registered/image_rect" to="$(arg base_name1)/sd/image_depth_rect"/>
     <remap from="depth_registered/points"     to="$(arg base_name1)/sd/points"/>
     <param name="queue_size" type="int" value="$(arg queue_size)"/>
-  </node>
+  </node-->
 
   <!-- qhd point cloud (960 x 540) -->
   <node pkg="nodelet" type="nodelet" name="$(arg base_name1)_points_xyzrgb_qhd" machine="$(arg machine)"
@@ -107,12 +107,12 @@
   </node>
 
   <!-- hd point cloud (1920 x 1080) -->
-  <node pkg="nodelet" type="nodelet" name="$(arg base_name1)_points_xyzrgb_hd" machine="$(arg machine)"
+  <!--node pkg="nodelet" type="nodelet" name="$(arg base_name1)_points_xyzrgb_hd" machine="$(arg machine)"
         args="load depth_image_proc/point_cloud_xyzrgb $(arg nodelet_manager1)" respawn="$(arg respawn)">
     <remap from="rgb/camera_info"             to="$(arg base_name1)/hd/camera_info"/>
     <remap from="rgb/image_rect_color"        to="$(arg base_name1)/hd/image_color_rect"/>
     <remap from="depth_registered/image_rect" to="$(arg base_name1)/hd/image_depth_rect"/>
     <remap from="depth_registered/points"     to="$(arg base_name1)/hd/points"/>
     <param name="queue_size" type="int" value="$(arg queue_size)"/>
-  </node>
+  </node-->
 </launch>

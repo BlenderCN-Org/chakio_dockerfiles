@@ -1,0 +1,1 @@
+docker build --tag ros:ros-kinect-v2_gpu  .

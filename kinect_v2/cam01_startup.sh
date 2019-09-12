@@ -1,0 +1,2 @@
+roslaunch kinect2_bridge kinect2_bridge_cam01.launch
+exit

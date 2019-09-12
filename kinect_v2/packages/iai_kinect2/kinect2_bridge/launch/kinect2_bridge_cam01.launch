@@ -3,7 +3,7 @@
   <arg name="base_name1"         default="env_cam01"/>
   <arg name="sensor1"            default="006403162247"/>
   <arg name="nodelet_manager1"   default="$(arg base_name1)"/>
-  <arg name="base_name_tf1"      default="$(arg base_name1)"/>
+  <arg name="base_name_tf1"      default="/$(arg base_name1)"/>
 
   <arg name="publish_tf"        default="true"/>
   <arg name="fps_limit"         default="-1.0"/>
@@ -115,4 +115,10 @@
     <remap from="depth_registered/points"     to="$(arg base_name1)/hd/points"/>
     <param name="queue_size" type="int" value="$(arg queue_size)"/>
   </node>
+
+    // transform_pointcloud2
+  <node pkg="transform_pointcloud2" type="pointcloud2_transformer" name="transform_pcd_env_cam01" output="screen">
+    <param name="camera_name" value="$(arg base_name1)" />
+  </node>
+
 </launch>

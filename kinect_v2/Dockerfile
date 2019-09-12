@@ -121,6 +121,8 @@ RUN mkdir -p /catkin_ws/src && \
    /bin/bash -c 'source /opt/ros/kinetic/setup.bash;catkin_make'
 
 COPY /packages/iai_kinect2 /catkin_ws/src/iai_kinect2
+COPY /packages/transform_pointcloud2 /catkin_ws/src/transform_pointcloud2
+COPY /packages/perception_pcl /catkin_ws/src/perception_pcl
 RUN cd /catkin_ws/src/iai_kinect2 && \
    /bin/bash -c 'source /opt/ros/kinetic/setup.bash;rosdep install -r --from-paths .' && \
    cd /catkin_ws && \
@@ -132,3 +134,8 @@ RUN echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc
 #######################################################################
 RUN echo "export PS1='\[\e[1;31;40m\]DOCKER Kinect_v2\[\e[0m\] \u:\w\$ '">> ~/.bashrc
 RUN echo "source /ros_setting.sh">> ~/.bashrc
+
+#######################################################################
+##                             start up                              ##
+#######################################################################
+RUN echo "source /startup.sh">> ~/.bashrc

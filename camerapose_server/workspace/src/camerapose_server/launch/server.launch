@@ -1,0 +1,4 @@
+<launch>
+	<node pkg="camerapose_server" name="camerapose_server"  type="camerapose_server" output="screen"/>
+	<node pkg="rviz" type="rviz" name="ar_marker_rviz" args="-d $(find camerapose_server)/rviz/ar_marker_double.rviz" />
+</launch>

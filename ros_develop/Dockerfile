@@ -84,8 +84,7 @@ RUN apt-get install -y libopencv-dev \
       ros-kinetic-map-server \
       ros-kinetic-amcl \
       ros-kinetic-teleop-twist-joy \
-      ros-kinetic-camera-calibration \
-      libeigen3-dev
+      ros-kinetic-camera-calibration
 #######################################################################
 ##                           ros settings                            ##
 #######################################################################

@@ -1,6 +1,8 @@
 # This is an auto generated Dockerfile for ros:ros-core
 # generated from docker_images/create_ros_core_image.Dockerfile.em
-FROM ubuntu:xenial
+#FROM ubuntu:xenial
+FROM nvidia/cuda:8.0-cudnn5-devel
+
 #######################################################################
 ##                            ros install                            ##
 #######################################################################
@@ -83,8 +85,22 @@ RUN apt-get update && apt-get install -y  build-essential \
       libusb-1.0-0-dev \
       libturbojpeg \
       libjpeg-turbo8-dev \
-      libglfw3-dev && \
+      libglfw3-dev \
+      libva-dev \
+      libjpeg-dev && \
    rm -rf /var/lib/apt/lists/*
+#######################################################################
+##                            for use gpu                            ##
+#######################################################################
+RUN apt-get update && apt-get install -y  nvidia-modprobe \
+   cuda-samples-8-0 \
+   opencl-headers && \
+   rm -rf /var/lib/apt/lists/*
+ENV LD_LIBRARY_PATH /usr/local/cuda/lib64:${LD_LIBRARY_PATH}
+ENV PATH /usr/local/cuda/bin:${PATH}
+ENV LIBFREENECT2_PIPELINE cuda 
+
+
 RUN cd libfreenect2 && \
    mkdir build && \
    cd build && \
@@ -94,8 +110,6 @@ RUN cd libfreenect2 && \
    make install && \
    mkdir -p /etc/udev/rules.d/ && \
    cp ../platform/linux/udev/90-kinect2.rules /etc/udev/rules.d/
-#RUN cp ../platform/linux/udev/90-kinect2.rules /etc/udev/rules.d/
-
 
 #######################################################################
 ##                   install additional packages                     ##

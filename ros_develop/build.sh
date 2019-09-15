@@ -1,1 +1,0 @@
-docker build --tag ros:ros-gui-develop  .

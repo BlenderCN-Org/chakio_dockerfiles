@@ -10,4 +10,4 @@ docker run -it \
 -v /etc/group:/etc/group:ro \
 -v /etc/passwd:/etc/passwd:ro \
 --net host \
-ros:ros-gui-develop \
+chakio_docker:ros-mode \

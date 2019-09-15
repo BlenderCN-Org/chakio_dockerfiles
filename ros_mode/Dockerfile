@@ -88,5 +88,5 @@ RUN apt-get install -y libopencv-dev \
 #######################################################################
 ##                           ros settings                            ##
 #######################################################################
-RUN echo "export PS1='\[\e[1;31;40m\]DOCKER ROS_DEVELOP\[\e[0m\] \u:\w\$ '">> ~/.bashrc
+RUN echo "export PS1='\[\e[1;31;40m\]DOCKER ROS_MODE\[\e[0m\] \u:\w\$ '">> ~/.bashrc
 RUN echo "source /ros_setting.sh">> ~/.bashrc

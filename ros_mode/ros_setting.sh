@@ -20,9 +20,11 @@ if [ $ros_master_local=true ]; then
 else
     export ROS_MASTER_URI=http://$ros_master_global:11311
 fi
+export PS1="\[\e[1;31;40m\]<DOCKER ROS_MODE>\[\e[0m\]\w$ "
 
 ## alias
 alias cm="cd ${CATKIN_HOME} && catkin_make && cd -"
+alias hsrb_mode='export ROS_MASTER_URI=http://hsrb.local:11311 export PS1="\[\033[41;1;37m\]<DOCKER HSRB>\[\033[0m\]\w$ "'
 
 ## echo
 echo "ROS_IP:"$ROS_IP

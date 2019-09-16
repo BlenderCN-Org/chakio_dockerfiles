@@ -1,0 +1,8 @@
+prefix=/catkin_ws/install
+
+Name: printeps_hsr_modules
+Description: Description of printeps_hsr_modules
+Version: 0.0.2
+Cflags: -I/catkin_ws/install/include
+Libs: -L/catkin_ws/install/lib 
+Requires: 

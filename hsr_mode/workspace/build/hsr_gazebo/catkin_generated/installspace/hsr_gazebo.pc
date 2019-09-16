@@ -1,0 +1,8 @@
+prefix=/catkin_ws/install
+
+Name: hsr_gazebo
+Description: Description of hsr_gazebo
+Version: 0.0.0
+Cflags: 
+Libs: -L/catkin_ws/install/lib 
+Requires: 

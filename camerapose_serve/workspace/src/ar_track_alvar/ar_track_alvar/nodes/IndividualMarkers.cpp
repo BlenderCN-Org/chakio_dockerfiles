@@ -406,7 +406,7 @@ void getPointCloudCallback (const sensor_msgs::PointCloud2ConstPtr &msg)
 
 	  //Publish the transform from the camera to the marker
 	  std::stringstream ssMakerFrame;
-      ssMakerFrame <<cam_name<<"/ar_marker_";
+      ssMakerFrame <<cam_name<<"_ar_marker_";
       std::string markerFrame = ssMakerFrame.str();
 	  std::stringstream out;
 	  out << id;

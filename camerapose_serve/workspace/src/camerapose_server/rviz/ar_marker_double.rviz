@@ -8,13 +8,12 @@ Panels:
         - /Status1
         - /PointCloud21
         - /PointCloud22
-        - /Image1
-        - /Image2
         - /TF1
         - /TF1/Frames1
         - /Map1
+        - /env_cam00 image1
       Splitter Ratio: 0.649647892
-    Tree Height: 324
+    Tree Height: 326
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -33,7 +32,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: Image
+    SyncSource: env_cam00 image
 Toolbars:
   toolButtonStyle: 2
 Visualization Manager:
@@ -78,11 +77,11 @@ Visualization Manager:
       Name: PointCloud2
       Position Transformer: XYZ
       Queue Size: 10
-      Selectable: true
+      Selectable: false
       Size (Pixels): 3
-      Size (m): 0.00300000003
+      Size (m): 0.00200000009
       Style: Flat Squares
-      Topic: /env_cam00/depth_registered/points
+      Topic: /env_cam00/qhd/points
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
@@ -108,38 +107,14 @@ Visualization Manager:
       Name: PointCloud2
       Position Transformer: XYZ
       Queue Size: 10
-      Selectable: true
+      Selectable: false
       Size (Pixels): 3
-      Size (m): 0.00300000003
+      Size (m): 0.00200000009
       Style: Flat Squares
-      Topic: /env_cam01/depth_registered/points
+      Topic: /env_cam01/qhd/points
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
-      Value: true
-    - Class: rviz/Image
-      Enabled: true
-      Image Topic: /env_cam00/color/image_raw
-      Max Value: 1
-      Median window: 5
-      Min Value: 0
-      Name: Image
-      Normalize Range: true
-      Queue Size: 2
-      Transport Hint: raw
-      Unreliable: false
-      Value: true
-    - Class: rviz/Image
-      Enabled: true
-      Image Topic: /env_cam01/color/image_raw
-      Max Value: 1
-      Median window: 5
-      Min Value: 0
-      Name: Image
-      Normalize Range: true
-      Queue Size: 2
-      Transport Hint: raw
-      Unreliable: false
       Value: true
     - Class: rviz/TF
       Enabled: true
@@ -154,49 +129,33 @@ Visualization Manager:
           Value: true
         ar_marker_3:
           Value: true
-        env_cam00/ar_marker_0:
+        env_cam00_ar_marker_0_pcd:
           Value: true
-        env_cam00/ar_marker_0_pcd:
+        env_cam00_ar_marker_1_pcd:
           Value: true
-        env_cam00/ar_marker_1:
+        env_cam00_ar_marker_2_pcd:
           Value: true
-        env_cam00/ar_marker_1_pcd:
+        env_cam00_ar_marker_3_pcd:
           Value: true
-        env_cam00/ar_marker_2:
+        env_cam00_ir_optical_frame:
           Value: true
-        env_cam00/ar_marker_2_pcd:
+        env_cam00_link:
           Value: true
-        env_cam00/ar_marker_3:
+        env_cam00_rgb_optical_frame:
           Value: true
-        env_cam00/ar_marker_3_pcd:
+        env_cam01_ar_marker_0_pcd:
           Value: true
-        env_cam00/camera_link:
+        env_cam01_ar_marker_1_pcd:
           Value: true
-        env_cam00/ir_optical_frame:
+        env_cam01_ar_marker_2_pcd:
           Value: true
-        env_cam00/rgb_optical_frame:
+        env_cam01_ar_marker_3_pcd:
           Value: true
-        env_cam01/ar_marker_0:
+        env_cam01_ir_optical_frame:
           Value: true
-        env_cam01/ar_marker_0_pcd:
+        env_cam01_link:
           Value: true
-        env_cam01/ar_marker_1:
-          Value: true
-        env_cam01/ar_marker_1_pcd:
-          Value: true
-        env_cam01/ar_marker_2:
-          Value: true
-        env_cam01/ar_marker_2_pcd:
-          Value: true
-        env_cam01/ar_marker_3:
-          Value: true
-        env_cam01/ar_marker_3_pcd:
-          Value: true
-        env_cam01/camera_link:
-          Value: true
-        env_cam01/ir_optical_frame:
-          Value: true
-        env_cam01/rgb_optical_frame:
+        env_cam01_rgb_optical_frame:
           Value: true
         map:
           Value: true
@@ -215,45 +174,29 @@ Visualization Manager:
             {}
           ar_marker_3:
             {}
-          env_cam00/camera_link:
-            env_cam00/rgb_optical_frame:
-              env_cam00/ar_marker_0:
+          env_cam00_link:
+            env_cam00_rgb_optical_frame:
+              env_cam00_ar_marker_0_pcd:
                 {}
-              env_cam00/ar_marker_0_pcd:
+              env_cam00_ar_marker_1_pcd:
                 {}
-              env_cam00/ar_marker_1:
+              env_cam00_ar_marker_2_pcd:
                 {}
-              env_cam00/ar_marker_1_pcd:
+              env_cam00_ar_marker_3_pcd:
                 {}
-              env_cam00/ar_marker_2:
+              env_cam00_ir_optical_frame:
                 {}
-              env_cam00/ar_marker_2_pcd:
+          env_cam01_link:
+            env_cam01_rgb_optical_frame:
+              env_cam01_ar_marker_0_pcd:
                 {}
-              env_cam00/ar_marker_3:
+              env_cam01_ar_marker_1_pcd:
                 {}
-              env_cam00/ar_marker_3_pcd:
+              env_cam01_ar_marker_2_pcd:
                 {}
-              env_cam00/ir_optical_frame:
+              env_cam01_ar_marker_3_pcd:
                 {}
-          env_cam01/camera_link:
-            env_cam01/rgb_optical_frame:
-              env_cam01/ar_marker_0:
-                {}
-              env_cam01/ar_marker_0_pcd:
-                {}
-              env_cam01/ar_marker_1:
-                {}
-              env_cam01/ar_marker_1_pcd:
-                {}
-              env_cam01/ar_marker_2:
-                {}
-              env_cam01/ar_marker_2_pcd:
-                {}
-              env_cam01/ar_marker_3:
-                {}
-              env_cam01/ar_marker_3_pcd:
-                {}
-              env_cam01/ir_optical_frame:
+              env_cam01_ir_optical_frame:
                 {}
       Update Interval: 0
       Value: true
@@ -266,6 +209,30 @@ Visualization Manager:
       Topic: /map
       Unreliable: false
       Use Timestamp: false
+      Value: true
+    - Class: rviz/Image
+      Enabled: true
+      Image Topic: /env_cam00/qhd/image_color
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: env_cam00 image
+      Normalize Range: true
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: true
+    - Class: rviz/Image
+      Enabled: true
+      Image Topic: /env_cam01/qhd/image_color
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: env_cam01 image
+      Normalize Range: true
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
       Value: true
   Enabled: true
   Global Options:
@@ -292,35 +259,33 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 10.1491241
+      Distance: 8.7550602
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.437112868
-        Y: 0.262929618
-        Z: -0.52211237
+        X: -0.129892573
+        Y: -0.949296176
+        Z: -0.725067019
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 1.41020286
+      Pitch: 1.33479643
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 4.09137726
+      Yaw: 5.35137892
     Saved: ~
 Window Geometry:
   Displays:
     collapsed: false
-  Height: 1056
+  Height: 1025
   Hide Left Dock: false
   Hide Right Dock: false
-  Image:
-    collapsed: false
-  QMainWindow State: 000000ff00000000fd00000004000000000000023a00000388fc020000000cfb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003a0000017e000000c600fffffffb0000000a0049006d00610067006501000001be000000fd0000001600fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000a0049006d00610067006501000002c1000001010000001600fffffffb0000000a0049006d00610067006501000002b1000001110000000000000000fb0000000a0049006d00610067006501000002d9000000e90000000000000000000000010000010f00000388fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073010000003a000003880000009e00fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e100000197000000030000073f0000003efc0100000002fb0000000800540069006d006501000000000000073f0000024400fffffffb0000000800540069006d00650100000000000004500000000000000000000003ea0000038800000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000400000000000001a500000369fc020000000dfb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afc0000003a00000180000000c600fffffffa000000010100000002fb0000000a0049006d0061006700650000000000ffffffff0000000000000000fb000000100044006900730070006c00610079007301000000000000023a0000015600fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000a0049006d00610067006500000002470000015c0000000000000000fb0000000a0049006d00610067006501000002b1000001110000000000000000fb0000000a0049006d00610067006501000002d9000000e90000000000000000fb0000001e0065006e0076005f00630061006d0030003000200069006d00610067006501000001c0000000ef0000001600fffffffb0000001e0065006e0076005f00630061006d0030003100200069006d00610067006501000002b5000000ee0000001600ffffff000000010000010f00000369fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073010000003a000003690000009e00fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e100000197000000030000074b0000003efc0100000002fb0000000800540069006d006501000000000000074b0000024400fffffffb0000000800540069006d006501000000000000045000000000000000000000048b0000036900000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Time:
@@ -329,6 +294,10 @@ Window Geometry:
     collapsed: false
   Views:
     collapsed: false
-  Width: 1855
-  X: 65
-  Y: 24
+  Width: 1867
+  X: 53
+  Y: 27
+  env_cam00 image:
+    collapsed: false
+  env_cam01 image:
+    collapsed: false

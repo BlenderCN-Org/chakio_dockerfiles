@@ -19,7 +19,8 @@ private:
     std::vector< int >sampleCounters;
     std::vector< tf::Transform >averageCameraPoses;
     std::vector< tf::Transform >improvedAverageCameraPoses;
-    int cameraNum = 1;
+    bool camera_enables[8]={false,false,false,false,false,false,false,false};
+    int cameraNum=8;
     int sampleNum = 100;
     double samplingTime = 0.3;
     double distanceThreshold = 0.5;
@@ -27,7 +28,14 @@ private:
 public:
     cameraPoseSaver()
     {
-        _nh.getParam("/camerapose_saver/cameraNum", cameraNum);
+        _nh.getParam("/camerapose_saver/cam00_enable", camera_enables[0]);
+        _nh.getParam("/camerapose_saver/cam01_enable", camera_enables[1]);
+        _nh.getParam("/camerapose_saver/cam02_enable", camera_enables[2]);
+        _nh.getParam("/camerapose_saver/cam03_enable", camera_enables[3]);
+        _nh.getParam("/camerapose_saver/cam04_enable", camera_enables[4]);
+        _nh.getParam("/camerapose_saver/cam05_enable", camera_enables[5]);
+        _nh.getParam("/camerapose_saver/cam06_enable", camera_enables[6]);
+        _nh.getParam("/camerapose_saver/cam07_enable", camera_enables[7]);
         _nh.getParam("/camerapose_saver/sampleNum", sampleNum);
         _nh.getParam("/camerapose_saver/samplingTime", samplingTime);
         _nh.getParam("/camerapose_saver/distanceThreshold", distanceThreshold);
@@ -46,12 +54,15 @@ public:
     {
         for(int cameraIndex=0;cameraIndex<cameraNum;cameraIndex++)
         {
-            for(int poseIndex=0; poseIndex<cameraPoseSamples[cameraIndex].size(); poseIndex++)
+            if(camera_enables[cameraIndex])
             {
-                //std::cout<<"getValidPose cam:"<<cameraIndex<<"poseIndex:"<<poseIndex<<std::endl;
-                if(this->getTransformsDistance(averageCameraPoses[cameraIndex], cameraPoseSamples[cameraIndex][poseIndex])<distanceThreshold)
+                for(int poseIndex=0; poseIndex<cameraPoseSamples[cameraIndex].size(); poseIndex++)
                 {
-                    availableCameraPoseSamples[cameraIndex].push_back(cameraPoseSamples[cameraIndex][poseIndex]);
+                    //std::cout<<"getValidPose cam:"<<cameraIndex<<"poseIndex:"<<poseIndex<<std::endl;
+                    if(this->getTransformsDistance(averageCameraPoses[cameraIndex], cameraPoseSamples[cameraIndex][poseIndex])<distanceThreshold)
+                    {
+                        availableCameraPoseSamples[cameraIndex].push_back(cameraPoseSamples[cameraIndex][poseIndex]);
+                    }
                 }
             }
         }
@@ -66,22 +77,34 @@ public:
                 sampleCounters[cameraIndex]++;
             }
         }
-        if(*std::min_element(sampleCounters.begin(),sampleCounters.end())==sampleNum)
+
+        int minCount = sampleNum+1;
+        for(int cameraIndex=0;cameraIndex<cameraNum;cameraIndex++)
+        {
+            if(camera_enables[cameraIndex] )
+            {
+                if( minCount>sampleCounters[cameraIndex])
+                {
+                    minCount = sampleCounters[cameraIndex];
+                }   
+            }
+        }
+        if(minCount==sampleNum)
         {
             this->getValidPose();
             this->getAverages();
             this->savePoses();
         }
-        else if (*std::min_element(sampleCounters.begin(),sampleCounters.end())<sampleNum)
+        else if (minCount<sampleNum)
         {
-            std::cout<<"calibrating now! sample:"<<*std::min_element(sampleCounters.begin(),sampleCounters.end())<<"/"<<sampleNum<<std::endl;
+            std::cout<<"calibrating now! sample:"<<minCount<<"/"<<sampleNum<<std::endl;
         }
         
     }
     bool getCameraPose(int cameraIndex)
     {
         std::stringstream cameraLinkName;
-        cameraLinkName << "/env_cam0"<<cameraIndex<<"/camera_link";
+        cameraLinkName << "/env_cam0"<<cameraIndex<<"_link";
 
         tf::StampedTransform tfFromMapToCamera;
         try{
@@ -161,21 +184,24 @@ public:
         std::string data;
         for(int cameraIndex=0;cameraIndex<cameraNum;cameraIndex++)
         {
-            std::stringstream ssData;
+            if(camera_enables[cameraIndex])
+            {
+                std::stringstream ssData;
 
-            tf::Transform averagePose = improvedAverageCameraPoses[cameraIndex];
-            tf::Vector3 averagePosition = averagePose.getOrigin();
-            tf::Quaternion averageQuaternion = averagePose.getRotation();
+                tf::Transform averagePose = improvedAverageCameraPoses[cameraIndex];
+                tf::Vector3 averagePosition = averagePose.getOrigin();
+                tf::Quaternion averageQuaternion = averagePose.getRotation();
 
-            // CameraNum
-            ssData << cameraIndex<<",";
-            // Position
-            ssData << averagePosition.getX()<<","<<averagePosition.getY()<<","<<averagePosition.getZ()<<",";
-            //Quaternion
-            ssData << averageQuaternion.getAxis().x()<<","<< averageQuaternion.getAxis().y()<<","<< averageQuaternion.getAxis().z()<<","<< averageQuaternion.getW()<<std::endl;
+                // CameraNum
+                ssData << cameraIndex<<",";
+                // Position
+                ssData << averagePosition.getX()<<","<<averagePosition.getY()<<","<<averagePosition.getZ()<<",";
+                //Quaternion
+                ssData << averageQuaternion.getAxis().x()<<","<< averageQuaternion.getAxis().y()<<","<< averageQuaternion.getAxis().z()<<","<< averageQuaternion.getW()<<std::endl;
 
-            //add Data
-            data += ssData.str();
+                //add Data
+                data += ssData.str();
+            }
         }
         if(!remove(fileName.c_str()))
         {

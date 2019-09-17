@@ -133,8 +133,9 @@ public:
             {
                 tf::Transform detailAlignment = this->estimateTransformBetweenPointSet(arPosesFromMapUsingCamera,arPoses);
                 aveCameraPoseFromMap = this->getCombinedTransform(detailAlignment, aveCameraPoseFromMap);
+                _calTF = true;
             }
-            _calTF = true;
+            
         }
         
     }

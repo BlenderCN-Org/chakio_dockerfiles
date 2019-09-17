@@ -1,11 +1,11 @@
 <launch>
 	<!-- option of camera pose estimation -->
 	<arg name="markerNum" default="4"/>
-	<arg name="sampleNum" default="200"/>
+	<arg name="sampleNum" default="400"/>
 	<arg name="samplingTime" default="0.2"/>
 	<arg name="image_enable" default="true"/>
 	<arg name="pcd_enable" default="true"/>
-	<arg name="distanceThreshold" default="0.2"/>
+	<arg name="distanceThreshold" default="0.15"/>
 
 	<!-- position of ar_marker -->
 	<arg name="cam00_enable" default="true"/>
@@ -52,8 +52,8 @@
 	<arg name="cam_name" default="env_cam"/>
 	<arg name="image_topic" default="/hd/color/image_raw" />
 	<arg name="info_topic" default="/hd/camera_info"/>	
-	<arg name="pcd_topic" default="/qhd/points" />
-	<arg name="pcd_info_topic" default="/qhd/camera_info"/>	
+	<arg name="pcd_topic" default="/hd/points" />
+	<arg name="pcd_info_topic" default="/hd/camera_info"/>	
 	<arg name="output_frame" default="_rgb_optical_frame" />
 
 	<!-- ar pose server -->
@@ -87,7 +87,14 @@
 
 	<!-- camera pose saver -->
 	<node pkg="camerapose_server" name="camerapose_saver"  type="camerapose_saver" output="screen">
-		<param name="cameraNum" value="$(arg cameraNum)"/>
+		<param name="cam00_enable" value="$(arg cam00_enable)"/>
+		<param name="cam01_enable" value="$(arg cam01_enable)"/>
+		<param name="cam02_enable" value="$(arg cam02_enable)"/>
+		<param name="cam03_enable" value="$(arg cam03_enable)"/>
+		<param name="cam04_enable" value="$(arg cam04_enable)"/>
+		<param name="cam05_enable" value="$(arg cam05_enable)"/>
+		<param name="cam06_enable" value="$(arg cam06_enable)"/>
+		<param name="cam07_enable" value="$(arg cam07_enable)"/>
 		<param name="sampleNum" value="$(arg sampleNum)"/>
 		<param name="distanceThreshold" value="$(arg distanceThreshold)"/>
 	</node>

@@ -59,7 +59,7 @@ public:
         std::cout<<"cam_name:"<<_cam_name<<std::endl;
         std::cout<<"markerNum:"<<_markerNum<<std::endl;
 
-        cameraLinkName << _cam_name <<"/camera_link";
+        cameraLinkName << _cam_name <<"_link";
 
         _sub_ar_cloud = _nh.subscribe( (_cam_name+"/ar_marker_cloud").c_str(), 1, &cameraPoseEstimater::arCloudCallback, this);
         _timer = _nh.createTimer(ros::Duration(0.1), &cameraPoseEstimater::timerCallback,this);
@@ -86,7 +86,7 @@ public:
             std::stringstream arMarkerWithCameraName;
     
             arMarkerName << "ar_marker_"<<markerIndex;
-            arMarkerWithCameraName << _cam_name<<"/ar_marker_"<<markerIndex;
+            arMarkerWithCameraName << _cam_name<<"_ar_marker_"<<markerIndex;
             
    
             tf::StampedTransform cameraPoseCandidateFromAR;

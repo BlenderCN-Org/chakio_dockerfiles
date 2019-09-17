@@ -88,7 +88,7 @@ public:
     {
         cameraLinkName.str("");
         cameraLinkName.clear(std::stringstream::goodbit);
-        cameraLinkName << "/env_cam0"<<cameraIndexes[cameraPoseIndex]<<"/camera_link";
+        cameraLinkName << "/env_cam0"<<cameraIndexes[cameraPoseIndex]<<"_link";
         _br.sendTransform(tf::StampedTransform(cameraPose, ros::Time::now(),"map",cameraLinkName.str()));
     }
 };

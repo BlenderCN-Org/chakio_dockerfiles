@@ -31,8 +31,8 @@ Pcd_transformer::Pcd_transformer()
 {
   ros::NodeHandle pnh("~");
   pnh.getParam("camera_name", camera_index);
-  pub = nh.advertise<sensor_msgs::PointCloud2>("/" + camera_index + "/depth_registered/transformed_points", 1);
-  sub = nh.subscribe("/" + camera_index + "/depth_registered/points", 1, &Pcd_transformer::callback, this);
+  pub = nh.advertise<sensor_msgs::PointCloud2>("/" + camera_index + "/qhd/transformed_points", 1);
+  sub = nh.subscribe("/" + camera_index + "/qhd/points", 1, &Pcd_transformer::callback, this);
 }
 
 sensor_msgs::PointCloud2 Pcd_transformer::pcd_receive(const sensor_msgs::PointCloud2 &_msg)
@@ -50,6 +50,7 @@ void Pcd_transformer::pcd_publish(const sensor_msgs::PointCloud2 &_msg)
 void Pcd_transformer::callback(const sensor_msgs::PointCloud2 &_msg)
 {
   pcd_publish(pcd_receive(_msg));
+  ROS_INFO("transformed pcd publish!");
 }
 
 //===========================================================================================================//
@@ -65,7 +66,7 @@ int main(int argc, char **argv)
   {
     try
     {
-      _pcd_transformer.listener.lookupTransform("/map", "/" + _pcd_transformer.camera_index + "/camera_link", ros::Time(0), _pcd_transformer.transform);
+      _pcd_transformer.listener.lookupTransform("/map", "/" + _pcd_transformer.camera_index + "_link", ros::Time(0), _pcd_transformer.transform);
       ROS_INFO("I got a transform!");
       break;
     }

@@ -1,13 +1,13 @@
 <launch>
 	// parameters
-	<arg name="base_name1" default="env_cam00" />
-	<arg name="base_name2" default="env_cam01" />
+	<arg name="base_name0" default="env_cam00" />
+	<arg name="base_name1" default="env_cam01" />
 	// pcd transformer
-  <node pkg="transform_pointcloud2" type="pointcloud2_transformer" name="transform_pcd_env_cam01" output="screen">
-    <param name="camera_name" value="$(arg base_name1)" >
+  <node pkg="transform_pointcloud2" type="pointcloud2_transformer" name="transform_pcd_env_cam00" output="screen">
+    <param name="camera_name" value="$(arg base_name0)" />
   </node>
   <node pkg="transform_pointcloud2" type="pointcloud2_transformer" name="transform_pcd_env_cam01" output="screen">
-    <param name="camera_name" value="$(arg base_name2)" >
+    <param name="camera_name" value="$(arg base_name1)" />
   </node>
 
 </launch>

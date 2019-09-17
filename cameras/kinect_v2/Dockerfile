@@ -48,6 +48,36 @@ ENTRYPOINT ["/ros_entrypoint.sh"]
 CMD ["bash"]
 
 #######################################################################
+##                   install additional packages                     ##
+#######################################################################
+# install opencv
+RUN apt-get update && apt-get install -y \
+      libopencv-dev \
+      net-tools \
+      gedit \
+      build-essential \
+      cmake \
+      pkg-config \
+      libusb-1.0-0-dev \
+      libturbojpeg \
+      libjpeg-turbo8-dev \
+      libglfw3-dev \
+      libva-dev \
+      libjpeg-dev \
+      nvidia-modprobe \
+      cuda-samples-8-0 \
+      opencl-headers \
+      ros-kinetic-rgbd-launch \
+      ros-kinetic-openni2-camera \
+      ros-kinetic-openni2-launch && \
+   rm -rf /var/lib/apt/lists/*
+#######################################################################
+##                            for use gpu                            ##
+#######################################################################
+ENV LD_LIBRARY_PATH /usr/local/cuda/lib64:${LD_LIBRARY_PATH}
+ENV PATH /usr/local/cuda/bin:${PATH}
+
+#######################################################################
 ##                       install nvidia docker                       ##
 #######################################################################
 
@@ -79,27 +109,6 @@ ENV NVIDIA_DRIVER_CAPABILITIES \
 ##                          install kinect                           ##
 #######################################################################
 RUN git clone https://github.com/OpenKinect/libfreenect2.git
-RUN apt-get update && apt-get install -y  build-essential \
-      cmake \
-      pkg-config \
-      libusb-1.0-0-dev \
-      libturbojpeg \
-      libjpeg-turbo8-dev \
-      libglfw3-dev \
-      libva-dev \
-      libjpeg-dev && \
-   rm -rf /var/lib/apt/lists/*
-#######################################################################
-##                            for use gpu                            ##
-#######################################################################
-RUN apt-get update && apt-get install -y  nvidia-modprobe \
-   cuda-samples-8-0 \
-   opencl-headers && \
-   rm -rf /var/lib/apt/lists/*
-ENV LD_LIBRARY_PATH /usr/local/cuda/lib64:${LD_LIBRARY_PATH}
-ENV PATH /usr/local/cuda/bin:${PATH}
-ENV LIBFREENECT2_PIPELINE cuda 
-
 
 RUN cd libfreenect2 && \
    mkdir build && \
@@ -111,17 +120,7 @@ RUN cd libfreenect2 && \
    mkdir -p /etc/udev/rules.d/ && \
    cp ../platform/linux/udev/90-kinect2.rules /etc/udev/rules.d/
 
-#######################################################################
-##                   install additional packages                     ##
-#######################################################################
-# install opencv
-RUN apt-get update && apt-get install -y libopencv-dev \
-      net-tools \
-      gedit \
-      ros-kinetic-rgbd-launch \
-      ros-kinetic-openni2-camera \
-      ros-kinetic-openni2-launch && \
-   rm -rf /var/lib/apt/lists/*
+ENV LIBFREENECT2_PIPELINE cuda 
 
 
 #######################################################################

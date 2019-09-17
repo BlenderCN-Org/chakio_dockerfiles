@@ -23,16 +23,16 @@
 
 #define K2_DEFAULT_NS          "kinect2"
 
-#define K2_TF_LINK             "/camera_link"
-#define K2_TF_RGB_OPT_FRAME    "/rgb_optical_frame"
-#define K2_TF_IR_OPT_FRAME     "/ir_optical_frame"
+#define K2_TF_LINK             "_link"
+#define K2_TF_RGB_OPT_FRAME    "_rgb_optical_frame"
+#define K2_TF_IR_OPT_FRAME     "_ir_optical_frame"
 
 #define K2_TOPIC_HD            "/hd"
-#define K2_TOPIC_QHD           ""
+#define K2_TOPIC_QHD           "/qhd"
 #define K2_TOPIC_SD            "/sd"
 
 #define K2_TOPIC_IMAGE_RECT    "_rect"
-#define K2_TOPIC_IMAGE_COLOR   "/color/image_raw"
+#define K2_TOPIC_IMAGE_COLOR   "/image_color"
 #define K2_TOPIC_IMAGE_MONO    "/image_mono"
 #define K2_TOPIC_IMAGE_DEPTH   "/image_depth"
 #define K2_TOPIC_IMAGE_IR      "/image_ir"

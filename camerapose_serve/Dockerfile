@@ -77,8 +77,7 @@ ENV NVIDIA_DRIVER_CAPABILITIES \
 ##                   install additional packages                     ##
 #######################################################################
 # install opencv
-RUN apt-get update && apt-get install -y
-RUN apt-get install -y libopencv-dev \
+RUN apt-get update && apt-get install -y libopencv-dev \
       net-tools \
       gedit \
       ros-kinetic-camera-calibration

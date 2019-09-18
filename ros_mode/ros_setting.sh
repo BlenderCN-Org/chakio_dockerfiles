@@ -2,13 +2,13 @@
 source /catkin_ws/devel/setup.bash
 
 ## setting
-# network_if=enp60s0
-network_if=enp4s0
+network_if=enp60s0
+# network_if=enp4s0
 CATKIN_HOME=/catkin_ws
 
 ## export
-export ros_master=global
-#export ros_master=local
+# export ros_master=global
+export ros_master=local
 export ros_master_global=192.168.1.214
 export hsr_ip=192.168.1.214
 
@@ -26,7 +26,7 @@ else
     echo "ROS_MASER : GLOBAL" 
     export ROS_MASTER_URI=http://$ros_master_global:11311
 fi
-export PS1="\[\e[1;31;40m\]<DOCKER HSR_MODE NORMAL>\[\e[0m\]\w$ "
+export PS1="\[\e[1;31;40m\]<DOCKER ROS_MODE NORMAL>\[\e[0m\]\w$ "
 #echo "nameserver 127.0.1.1" >>/etc/resolv.conf 
 ## alias
 cdls()

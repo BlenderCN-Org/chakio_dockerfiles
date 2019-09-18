@@ -1,7 +1,7 @@
 <launch>
 
-  <arg name="base_name1"         default="env_cam00"/>
-  <arg name="sensor1"            default="501552342442"/>
+  <arg name="base_name1"         default="env_cam03"/>
+  <arg name="sensor1"            default="000808560447"/>
   <arg name="nodelet_manager1"   default="$(arg base_name1)"/>
   <arg name="base_name_tf1"      default="/$(arg base_name1)"/>
 
@@ -117,7 +117,7 @@
   </node>
 
     // transform_pointcloud2
-  <node pkg="transform_pointcloud2" type="pointcloud2_transformer" name="transform_pcd_env_cam00" output="screen">
+  <node pkg="transform_pointcloud2" type="pointcloud2_transformer" name="transform_pcd_env_cam03" output="screen">
     <param name="camera_name" value="$(arg base_name1)" />
   </node>
 

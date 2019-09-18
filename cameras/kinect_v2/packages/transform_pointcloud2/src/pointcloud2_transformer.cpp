@@ -37,6 +37,22 @@ Pcd_transformer::Pcd_transformer()
 
 sensor_msgs::PointCloud2 Pcd_transformer::pcd_receive(const sensor_msgs::PointCloud2 &_msg)
 {
+  std::string frame_id;
+  frame_id = _msg.header.frame_id;
+  while (ros::ok())
+  {
+    try
+    {
+      listener.lookupTransform("/map", frame_id, ros::Time(0), transform);
+      ROS_INFO("I got a transform!");
+      break;
+    }
+    catch (tf::TransformException ex)
+    {
+      ROS_ERROR("%s", ex.what());
+      ros::Duration(1.0).sleep();
+    }
+  }
   sensor_msgs::PointCloud2 transformed_msg;
   pcl_ros::transformPointCloud("/map", transform, _msg, transformed_msg);
   return transformed_msg;
@@ -62,20 +78,7 @@ int main(int argc, char **argv)
 
   Pcd_transformer _pcd_transformer; 
   
-  while (ros::ok())
-  {
-    try
-    {
-      _pcd_transformer.listener.lookupTransform("/map", "/" + _pcd_transformer.camera_index + "_link", ros::Time(0), _pcd_transformer.transform);
-      ROS_INFO("I got a transform!");
-      break;
-    }
-    catch (tf::TransformException ex)
-    {
-      ROS_ERROR("%s", ex.what());
-      ros::Duration(1.0).sleep();
-    }
-  }
+
 
   ros::spin();
 

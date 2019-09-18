@@ -2,7 +2,7 @@ xhost +local:user
 docker run -it \
 --runtime=nvidia \
 --env=DISPLAY=$DISPLAY \
---name ros-kinect-v2-env_cam01 \
+--name ros-kinect-v2-env_cam03 \
 --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
 --env="QT_X11_NO_MITSHM=1" \
 --rm \
@@ -11,7 +11,7 @@ docker run -it \
 -v /etc/group:/etc/group:ro \
 -v /etc/passwd:/etc/passwd:ro \
 --net host \
---device /dev/bus/usb/012/006 \
+--device /dev/bus/usb/012/004 \
 ros:ros-kinect-v2
 # how to show usb list
 # lsusb -t

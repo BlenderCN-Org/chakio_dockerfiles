@@ -18,16 +18,16 @@
 	<arg name="cam07_enable" default="false"/>
 
 	<!-- position of ar_marker -->
-	<arg name="marker1_pos_x" default="0.49"/>
+	<arg name="marker1_pos_x" default="0.98"/>
 	<arg name="marker1_pos_y" default="0.49"/>
 	
-	<arg name="marker2_pos_x" default="0.49"/>
+	<arg name="marker2_pos_x" default="0.98"/>
 	<arg name="marker2_pos_y" default="-0.49"/>
 
-	<arg name="marker3_pos_x" default="-0.49"/>
+	<arg name="marker3_pos_x" default="-0.00"/>
 	<arg name="marker3_pos_y" default="0.49"/>
 	
-	<arg name="marker4_pos_x" default="-0.49"/>
+	<arg name="marker4_pos_x" default="-0.00"/>
 	<arg name="marker4_pos_y" default="-0.49"/>
 
 	<arg name="marker5_pos_x" default="0.49"/>

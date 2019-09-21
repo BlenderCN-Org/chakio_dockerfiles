@@ -117,8 +117,8 @@
   </node>
 
     // transform_pointcloud2
-  <node pkg="transform_pointcloud2" type="pointcloud2_transformer" name="transform_pcd_env_cam00" output="screen">
+  <!--node pkg="transform_pointcloud2" type="pointcloud2_transformer" name="transform_pcd_env_cam00" output="screen">
     <param name="camera_name" value="$(arg base_name1)" />
-  </node>
+  </node-->
 
 </launch>

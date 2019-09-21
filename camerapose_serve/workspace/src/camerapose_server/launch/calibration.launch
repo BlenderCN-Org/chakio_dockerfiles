@@ -8,10 +8,10 @@
 	<arg name="distanceThreshold" default="0.15"/>
 
 	<!-- position of ar_marker -->
-	<arg name="cam00_enable" default="true"/>
+	<arg name="cam00_enable" default="false"/>
 	<arg name="cam01_enable" default="true"/>
-	<arg name="cam02_enable" default="true"/>
-	<arg name="cam03_enable" default="true"/>
+	<arg name="cam02_enable" default="false"/>
+	<arg name="cam03_enable" default="false"/>
 	<arg name="cam04_enable" default="false"/>
 	<arg name="cam05_enable" default="false"/>
 	<arg name="cam06_enable" default="false"/>
@@ -143,15 +143,19 @@
 		<node name="ar_track_alvar01" pkg="ar_track_alvar" type="individualMarkersNoKinect" respawn="false" output="screen"
 		args="$(arg marker_size) $(arg max_new_marker_error) $(arg max_track_error) $(arg cam01_image_topic) $(arg cam01_info_topic) $(arg output01_frame) $(arg cam01_name)" />
 		<!-- ar_track_alvar pcd -->
+		<!--
 		<node name="ar_track_alvar01_pcd" pkg="ar_track_alvar" type="individualMarkers" respawn="false" output="screen"
 		args="$(arg marker_size) $(arg max_new_marker_error) $(arg max_track_error) $(arg cam01_pcd_topic) $(arg cam01_pcd_info_topic) $(arg output01_frame) $(arg cam01_name)" />
+		-->
 		<!-- camerapose_estimater -->
+		<!--
 		<node name="camerapose_estimater01" pkg="camerapose_server" type="camerapose_estimater" output="screen">
 			<param name="cameraName" value="$(arg cam01_name)"/>
 			<param name="markerNum" value="$(arg markerNum)"/>
 			<param name="pcd_enable" value="$(arg pcd_enable)"/>
 			<param name="image_enable" value="$(arg image_enable)"/>
 		</node>
+		-->
 	</group>
 
     <!-- cam02 -->

@@ -1,6 +1,6 @@
 <launch>
 
-  <arg name="base_name"         default="kinect2"/>
+  <arg name="base_name"         default="env_cam00"/>
   <arg name="sensor"            default=""/>
   <arg name="publish_tf"        default="true"/>
   <arg name="base_name_tf"      default="$(arg base_name)"/>

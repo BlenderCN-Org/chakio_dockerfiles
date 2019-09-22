@@ -12,4 +12,4 @@ docker run -it \
 -v /etc/passwd:/etc/passwd:ro \
 --net host \
 --privileged \
-ros:ros-kinect-v2 \
+ros:ros-kinect-v2

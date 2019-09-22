@@ -41,6 +41,7 @@ private:
     tf::Transform aveCameraPoseFromMap;
 
     std::string _cam_name = "";
+    std::string frameName = "";
     std::stringstream cameraLinkName;
     int _markerNum = 1;
     double _planeDetectionDistanceTh = 0.001;
@@ -56,10 +57,11 @@ public:
         _pnh.getParam("markerNum", _markerNum);
         _pnh.getParam("image_enable", _image_enable);
         _pnh.getParam("pcd_enable", _pcd_enable);
+        _pnh.getParam("output_frame", frameName);
         std::cout<<"cam_name:"<<_cam_name<<std::endl;
         std::cout<<"markerNum:"<<_markerNum<<std::endl;
 
-        cameraLinkName << _cam_name <<"_link";
+        cameraLinkName << _cam_name <<frameName;
 
         _sub_ar_cloud = _nh.subscribe( (_cam_name+"/ar_marker_cloud").c_str(), 1, &cameraPoseEstimater::arCloudCallback, this);
         _timer = _nh.createTimer(ros::Duration(0.1), &cameraPoseEstimater::timerCallback,this);

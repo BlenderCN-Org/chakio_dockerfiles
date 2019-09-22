@@ -16,6 +16,7 @@ private:
     std::vector< std::vector < tf::Transform > > cameraPoseSamples;
     std::vector< std::vector < tf::Transform > > availableCameraPoseSamples;
     ros::Timer timer;
+    std::string output_frame;
     std::vector< int >sampleCounters;
     std::vector< tf::Transform >averageCameraPoses;
     std::vector< tf::Transform >improvedAverageCameraPoses;
@@ -39,6 +40,7 @@ public:
         _nh.getParam("/camerapose_saver/sampleNum", sampleNum);
         _nh.getParam("/camerapose_saver/samplingTime", samplingTime);
         _nh.getParam("/camerapose_saver/distanceThreshold", distanceThreshold);
+        _nh.getParam("/camerapose_saver/output_frame", output_frame);
 
         averageCameraPoses.resize(cameraNum);
         improvedAverageCameraPoses.resize(cameraNum);
@@ -104,7 +106,7 @@ public:
     bool getCameraPose(int cameraIndex)
     {
         std::stringstream cameraLinkName;
-        cameraLinkName << "/env_cam0"<<cameraIndex<<"_link";
+        cameraLinkName << "/env_cam0"<<cameraIndex<<output_frame;
 
         tf::StampedTransform tfFromMapToCamera;
         try{

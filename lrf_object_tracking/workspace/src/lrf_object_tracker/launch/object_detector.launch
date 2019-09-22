@@ -1,0 +1,114 @@
+<launch>
+	<arg name="lrf_name_prefix" default="env_lrf"/>
+	<arg name="lrf_scan_topic_prefix" default="/scan" />
+	<arg name="lrf_detect_topic_prefix" default="/detected_objects" />
+	<arg name="lrf_frame_prefix" default="_link" />
+	<arg name="lrf_scan_limit_file_name" default="/catkin_ws/src/lrfpose_server/lrfMaxScan.csv"/>
+
+	<arg name="margin_length" default="0.4"/>
+	<arg name="min_length" default="0.1"/>
+	<arg name="max_difference" default="0.2"/>
+
+	<arg name="max_object_width" default="0.6"/>
+	<arg name="min_object_width" default="0.1"/>
+
+	<arg name="lrf00_enable" default="true"/>
+	<arg name="lrf01_enable" default="true"/>
+	<arg name="lrf02_enable" default="true"/>
+	<arg name="lrf03_enable" default="true"/>
+
+	<node pkg="rviz" type="rviz" name="lrf_object_detector_rviz" args="-d $(find lrf_object_tracker)/rviz/lrf_object_tracker.rviz" />
+
+	<!-- lrf00 -->
+	<group if="$(arg lrf00_enable)">
+		<!-- arg_setting -->
+		<arg name="id" default="00"/>
+		<arg name="lrf_name" default="$(arg lrf_name_prefix)$(arg id)"/>
+		<arg name="lrf_scan_topic" default="$(arg lrf_name)$(arg lrf_scan_topic_prefix)" />
+		<arg name="lrf_detect_topic" default="$(arg lrf_name)$(arg lrf_detect_topic_prefix)" />
+		<arg name="lrf_frame" default="$(arg lrf_name)$(arg lrf_frame_prefix)" />
+
+		<!-- LRF Publish -->	
+		<node name="$(arg lrf_name)_object_detector" pkg="lrf_object_tracker"  type="object_detector" output="screen">
+			<param name="lrf_id"   value="$(arg id)"/>
+			<param name="lrf_name"   value="$(arg lrf_name)"/>
+			<param name="lrf_scan_topic_name"   value="$(arg lrf_scan_topic)"/>
+			<param name="lrf_detect_topic_name"   value="$(arg lrf_detect_topic)"/>
+			<param name="lrf_scan_limit_file_name"   value="$(arg lrf_scan_limit_file_name)"/>
+			<param name="margin_length"   value="$(arg margin_length)"/>
+			<param name="min_length" value="$(arg min_length)"/>
+			<param name="max_difference"   value="$(arg max_difference)"/>
+			<param name="max_object_width"   value="$(arg max_object_width)"/>
+			<param name="min_object_width"   value="$(arg min_object_width)"/>
+		</node> 
+	</group>
+	<!-- lrf01 -->
+	<group if="$(arg lrf01_enable)">
+		<!-- arg_setting -->
+		<arg name="id" default="01"/>
+		<arg name="lrf_name" default="$(arg lrf_name_prefix)$(arg id)"/>
+		<arg name="lrf_scan_topic" default="$(arg lrf_name)$(arg lrf_scan_topic_prefix)" />
+		<arg name="lrf_detect_topic" default="$(arg lrf_name)$(arg lrf_detect_topic_prefix)" />
+		<arg name="lrf_frame" default="$(arg lrf_name)$(arg lrf_frame_prefix)" />
+
+		<!-- LRF Publish -->	
+		<node name="$(arg lrf_name)_object_detector" pkg="lrf_object_tracker"  type="object_detector" output="screen">
+			<param name="lrf_id"   value="$(arg id)"/>
+			<param name="lrf_name"   value="$(arg lrf_name)"/>
+			<param name="lrf_scan_topic_name"   value="$(arg lrf_scan_topic)"/>
+			<param name="lrf_detect_topic_name"   value="$(arg lrf_detect_topic)"/>
+			<param name="lrf_scan_limit_file_name"   value="$(arg lrf_scan_limit_file_name)"/>
+			<param name="margin_length"   value="$(arg margin_length)"/>
+			<param name="min_length" value="$(arg min_length)"/>
+			<param name="max_difference"   value="$(arg max_difference)"/>
+			<param name="max_object_width"   value="$(arg max_object_width)"/>
+			<param name="min_object_width"   value="$(arg min_object_width)"/>
+		</node> 
+	</group>
+	<!-- lrf02 -->
+	<group if="$(arg lrf02_enable)">
+		<!-- arg_setting -->
+		<arg name="id" default="02"/>
+		<arg name="lrf_name" default="$(arg lrf_name_prefix)$(arg id)"/>
+		<arg name="lrf_scan_topic" default="$(arg lrf_name)$(arg lrf_scan_topic_prefix)" />
+		<arg name="lrf_detect_topic" default="$(arg lrf_name)$(arg lrf_detect_topic_prefix)" />
+		<arg name="lrf_frame" default="$(arg lrf_name)$(arg lrf_frame_prefix)" />
+
+		<!-- LRF Publish -->	
+		<node name="$(arg lrf_name)_object_detector" pkg="lrf_object_tracker"  type="object_detector" output="screen">
+			<param name="lrf_id"   value="$(arg id)"/>
+			<param name="lrf_name"   value="$(arg lrf_name)"/>
+			<param name="lrf_scan_topic_name"   value="$(arg lrf_scan_topic)"/>
+			<param name="lrf_detect_topic_name"   value="$(arg lrf_detect_topic)"/>
+			<param name="lrf_scan_limit_file_name"   value="$(arg lrf_scan_limit_file_name)"/>
+			<param name="margin_length"   value="$(arg margin_length)"/>
+			<param name="min_length" value="$(arg min_length)"/>
+			<param name="max_difference"   value="$(arg max_difference)"/>
+			<param name="max_object_width"   value="$(arg max_object_width)"/>
+			<param name="min_object_width"   value="$(arg min_object_width)"/>
+		</node> 
+	</group>
+	<!-- lrf03 -->
+	<group if="$(arg lrf03_enable)">
+		<!-- arg_setting -->
+		<arg name="id" default="03"/>
+		<arg name="lrf_name" default="$(arg lrf_name_prefix)$(arg id)"/>
+		<arg name="lrf_scan_topic" default="$(arg lrf_name)$(arg lrf_scan_topic_prefix)" />
+		<arg name="lrf_detect_topic" default="$(arg lrf_name)$(arg lrf_detect_topic_prefix)" />
+		<arg name="lrf_frame" default="$(arg lrf_name)$(arg lrf_frame_prefix)" />
+
+		<!-- LRF Publish -->	
+		<node name="$(arg lrf_name)_object_detector" pkg="lrf_object_tracker"  type="object_detector" output="screen">
+			<param name="lrf_id"   value="$(arg id)"/>
+			<param name="lrf_name"   value="$(arg lrf_name)"/>
+			<param name="lrf_scan_topic_name"   value="$(arg lrf_scan_topic)"/>
+			<param name="lrf_detect_topic_name"   value="$(arg lrf_detect_topic)"/>
+			<param name="lrf_scan_limit_file_name"   value="$(arg lrf_scan_limit_file_name)"/>
+			<param name="margin_length"   value="$(arg margin_length)"/>
+			<param name="min_length" value="$(arg min_length)"/>
+			<param name="max_difference"   value="$(arg max_difference)"/>
+			<param name="max_object_width"   value="$(arg max_object_width)"/>
+			<param name="min_object_width"   value="$(arg min_object_width)"/>
+		</node> 
+	</group>
+</launch>

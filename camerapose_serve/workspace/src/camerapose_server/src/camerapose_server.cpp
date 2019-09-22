@@ -15,11 +15,14 @@ private:
     ros::Timer timer                    = _nh.createTimer(ros::Duration(0.1), &cameraPoseServer::timerCallback,this);
     std::vector< tf::Transform > cameraPoses;
     std::stringstream cameraLinkName;
+    std::string output_frame;
     std::string fileName;
     std::vector<double> cameraIndexes;
 public:
     cameraPoseServer()
     {
+        ros::NodeHandle _pnh("~");
+        _pnh.getParam("output_frame", output_frame);
         fileName ="/catkin_ws/src/camerapose_server/cameraPose.csv";
         std::ifstream readingCSV(fileName.c_str());
         std::string oneLine;
@@ -88,7 +91,7 @@ public:
     {
         cameraLinkName.str("");
         cameraLinkName.clear(std::stringstream::goodbit);
-        cameraLinkName << "/env_cam0"<<cameraIndexes[cameraPoseIndex]<<"_link";
+        cameraLinkName << "/env_cam0"<<cameraIndexes[cameraPoseIndex]<<output_frame;
         _br.sendTransform(tf::StampedTransform(cameraPose, ros::Time::now(),"map",cameraLinkName.str()));
     }
 };

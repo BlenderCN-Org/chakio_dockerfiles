@@ -2,7 +2,7 @@
 
   <arg name="base_name"         default="env_cam00"/>
   <arg name="sensor"            default=""/>
-  <arg name="publish_tf"        default="true"/>
+  <arg name="publish_tf"        default="false"/>
   <arg name="base_name_tf"      default="$(arg base_name)"/>
   <arg name="fps_limit"         default="-1.0"/>
   <arg name="calib_path"        default="$(find kinect2_bridge)/data/"/>
@@ -69,7 +69,7 @@
     <param name="use_png"           type="bool"   value="$(arg use_png)"/>
     <param name="jpeg_quality"      type="int"    value="$(arg jpeg_quality)"/>
     <param name="png_level"         type="int"    value="$(arg png_level)"/>
-    <param name="depth_method"      type="str"    value="$(arg depth_method)"/>
+    <param name="depth_method"      type="str"    value="$(sarg depth_method)"/>
     <param name="depth_device"      type="int"    value="$(arg depth_device)"/>
     <param name="reg_method"        type="str"    value="$(arg reg_method)"/>
     <param name="reg_device"        type="int"    value="$(arg reg_device)"/>
@@ -94,10 +94,10 @@
   <!-- qhd point cloud (960 x 540) -->
   <node pkg="nodelet" type="nodelet" name="$(arg base_name)_points_xyzrgb_qhd" machine="$(arg machine)"
         args="load depth_image_proc/point_cloud_xyzrgb $(arg nodelet_manager)" respawn="$(arg respawn)">
-    <remap from="rgb/camera_info"             to="$(arg base_name)/camera_info"/>
-    <remap from="rgb/image_rect_color"        to="$(arg base_name)/color/image_raw"/>
-    <remap from="depth_registered/image_rect" to="$(arg base_name)/image_depth_rect"/>
-    <remap from="depth_registered/points"     to="$(arg base_name)/depth_registered/points"/>
+    <remap from="rgb/camera_info"             to="$(arg base_name)/qhd/camera_info"/>
+    <remap from="rgb/image_rect_color"        to="$(arg base_name)/qhd/image_color_rect"/>
+    <remap from="depth_registered/image_rect" to="$(arg base_name)/qhd/image_depth_rect"/>
+    <remap from="depth_registered/points"     to="$(arg base_name)/qhd/points"/>
     <param name="queue_size" type="int" value="$(arg queue_size)"/>
   </node>
 

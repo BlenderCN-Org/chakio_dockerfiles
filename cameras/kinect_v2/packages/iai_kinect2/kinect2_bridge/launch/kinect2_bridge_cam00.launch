@@ -20,7 +20,7 @@
   <arg name="queue_size"        default="5"/>
   <arg name="bilateral_filter"  default="true"/>
   <arg name="edge_aware_filter" default="true"/>
-  <arg name="worker_threads"    default="6"/>
+  <arg name="worker_threads"    default="4"/>
   <arg name="machine"           default="localhost"/>
   <arg name="start_manager"     default="true"/>
   <arg name="use_machine"       default="true"/>

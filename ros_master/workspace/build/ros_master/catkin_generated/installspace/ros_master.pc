@@ -1,0 +1,8 @@
+prefix=/catkin_ws/install
+
+Name: ros_master
+Description: Description of ros_master
+Version: 0.0.0
+Cflags: 
+Libs: -L/catkin_ws/install/lib 
+Requires: 

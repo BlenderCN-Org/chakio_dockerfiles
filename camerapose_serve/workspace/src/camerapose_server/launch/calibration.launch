@@ -18,29 +18,29 @@
 	<arg name="cam07_enable" default="false"/>
 
 	<!-- position of ar_marker -->
-	<arg name="marker1_pos_x" default="0.98"/>
-	<arg name="marker1_pos_y" default="0.49"/>
+	<arg name="marker1_pos_x" default="0.50"/>
+	<arg name="marker1_pos_y" default="0.50"/>
 	
-	<arg name="marker2_pos_x" default="0.98"/>
-	<arg name="marker2_pos_y" default="-0.49"/>
+	<arg name="marker2_pos_x" default="0.50"/>
+	<arg name="marker2_pos_y" default="-0.50"/>
 
-	<arg name="marker3_pos_x" default="-0.00"/>
-	<arg name="marker3_pos_y" default="0.49"/>
+	<arg name="marker3_pos_x" default="-0.50"/>
+	<arg name="marker3_pos_y" default="0.50"/>
 	
-	<arg name="marker4_pos_x" default="-0.00"/>
-	<arg name="marker4_pos_y" default="-0.49"/>
+	<arg name="marker4_pos_x" default="-0.50"/>
+	<arg name="marker4_pos_y" default="-0.50"/>
 
-	<arg name="marker5_pos_x" default="0.49"/>
-	<arg name="marker5_pos_y" default="0.49"/>
+	<arg name="marker5_pos_x" default="0.50"/>
+	<arg name="marker5_pos_y" default="0.50"/>
 	
-	<arg name="marker6_pos_x" default="0.49"/>
-	<arg name="marker6_pos_y" default="-0.49"/>
+	<arg name="marker6_pos_x" default="0.50"/>
+	<arg name="marker6_pos_y" default="-0.50"/>
 	
-	<arg name="marker7_pos_x" default="-0.49"/>
-	<arg name="marker7_pos_y" default="0.49"/>
+	<arg name="marker7_pos_x" default="-0.50"/>
+	<arg name="marker7_pos_y" default="0.50"/>
 
-	<arg name="marker8_pos_x" default="-0.49"/>
-	<arg name="marker8_pos_y" default="-0.49"/>
+	<arg name="marker8_pos_x" default="-0.50"/>
+	<arg name="marker8_pos_y" default="-0.50"/>
 	
 
 	<!-- option of AR marker tracker -->
@@ -50,11 +50,11 @@
 
 	<!-- option of camera topic -->
 	<arg name="cam_name" default="env_cam"/>
-	<arg name="image_topic" default="/hd/color/image_raw" />
+	<arg name="image_topic" default="/hd/color/image_rect_raw" />
 	<arg name="info_topic" default="/hd/camera_info"/>	
 	<arg name="pcd_topic" default="/hd/points" />
 	<arg name="pcd_info_topic" default="/hd/camera_info"/>	
-	<arg name="output_frame" default="_rgb_optical_frame" />
+	<arg name="output_frame" default="_opitical_ir_frame" />
 
 	<!-- ar pose server -->
 	<node pkg="camerapose_server" name="arpose_server"  type="arpose_server" output="screen">
@@ -125,6 +125,7 @@
 			<param name="markerNum" value="$(arg markerNum)"/>
 			<param name="pcd_enable" value="$(arg pcd_enable)"/>
 			<param name="image_enable" value="$(arg image_enable)"/>
+			<param name="output_frame" value="$(arg output00_frame)"/>
 		</node>
 	</group>
 	
@@ -151,6 +152,7 @@
 			<param name="markerNum" value="$(arg markerNum)"/>
 			<param name="pcd_enable" value="$(arg pcd_enable)"/>
 			<param name="image_enable" value="$(arg image_enable)"/>
+			<param name="output_frame" value="$(arg output01_frame)"/>
 		</node>
 	</group>
 
@@ -177,6 +179,7 @@
 			<param name="markerNum" value="$(arg markerNum)"/>
 			<param name="pcd_enable" value="$(arg pcd_enable)"/>
 			<param name="image_enable" value="$(arg image_enable)"/>
+			<param name="output_frame" value="$(arg output02_frame)"/>
 		</node>
 	</group>
 
@@ -203,6 +206,7 @@
 			<param name="markerNum" value="$(arg markerNum)"/>
 			<param name="pcd_enable" value="$(arg pcd_enable)"/>
 			<param name="image_enable" value="$(arg image_enable)"/>
+			<param name="output_frame" value="$(arg output03_frame)"/>
 		</node>
 	</group>
 
@@ -229,6 +233,7 @@
 			<param name="markerNum" value="$(arg markerNum)"/>
 			<param name="pcd_enable" value="$(arg pcd_enable)"/>
 			<param name="image_enable" value="$(arg image_enable)"/>
+			<param name="output_frame" value="$(arg output04_frame)"/>
 		</node>
 	</group>
     
@@ -255,6 +260,7 @@
 			<param name="markerNum" value="$(arg markerNum)"/>
 			<param name="pcd_enable" value="$(arg pcd_enable)"/>
 			<param name="image_enable" value="$(arg image_enable)"/>
+			<param name="output_frame" value="$(arg output05_frame)"/>
 		</node>
 	</group>
 
@@ -281,6 +287,7 @@
 			<param name="markerNum" value="$(arg markerNum)"/>
 			<param name="pcd_enable" value="$(arg pcd_enable)"/>
 			<param name="image_enable" value="$(arg image_enable)"/>
+			<param name="output_frame" value="$(arg output06_frame)"/>
 		</node>
 	</group>
 
@@ -307,6 +314,7 @@
 			<param name="markerNum" value="$(arg markerNum)"/>
 			<param name="pcd_enable" value="$(arg pcd_enable)"/>
 			<param name="image_enable" value="$(arg image_enable)"/>
+			<param name="output_frame" value="$(arg output07_frame)"/>
 		</node>
 	</group>
 	

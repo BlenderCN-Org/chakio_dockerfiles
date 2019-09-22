@@ -8,7 +8,7 @@ if [ -z "$TARGET_IP" ] ; then
 else
     export ROS_IP=$TARGET_IP
 fi
-#export ROS_MASTER_URI=http://$TARGET_IP:11311
-export ROS_MASTER_URI=http://192.168.1.14:11311
+export ROS_MASTER_URI=http://$TARGET_IP:11311
+#export ROS_MASTER_URI=http://192.168.1.14:11311
 echo "ROS_IP:"$ROS_IP
 echo "ROS_MASTER_URI:"$ROS_MASTER_URI

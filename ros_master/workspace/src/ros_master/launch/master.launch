@@ -1,0 +1,8 @@
+<launch>
+ <!-- provide map -->
+	<node name="ros_master_map" pkg="map_server" type="map_server"
+		args="$(find ros_master)/map/map.yaml" respawn="false" >
+		<param name="use_map_topic"   value="true"/>
+		<param name="frame_id" 				value="map" />
+	</node> 
+</launch>

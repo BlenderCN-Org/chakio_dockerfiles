@@ -1,0 +1,1 @@
+docker build --tag ros:lrfpose_estimater  .

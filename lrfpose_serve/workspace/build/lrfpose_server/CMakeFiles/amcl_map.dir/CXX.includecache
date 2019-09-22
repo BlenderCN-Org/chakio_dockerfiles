@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/catkin_ws/src/lrfpose_server/include/amcl/map/map.h
+stdint.h
+-
+
+/catkin_ws/src/lrfpose_server/src/amcl/map/map_cspace.cpp
+queue
+-
+math.h
+-
+stdlib.h
+-
+string.h
+-
+amcl/map/map.h
+/catkin_ws/src/lrfpose_server/src/amcl/map/amcl/map/map.h
+

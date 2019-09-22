@@ -2,14 +2,14 @@
 source /catkin_ws/devel/setup.bash
 
 ## setting
-network_if=enp60s0
-# network_if=enp4s0
+#network_if=enp60s0
+network_if=enp4s0
 CATKIN_HOME=/catkin_ws
 
 ## export
-# export ros_master=global
-export ros_master=local
-export ros_master_global=192.168.1.214
+export ros_master=global
+#export ros_master=local
+export ros_master_global=192.168.1.14
 export hsr_ip=192.168.1.214
 
 export ROS_HOME=~/.ros

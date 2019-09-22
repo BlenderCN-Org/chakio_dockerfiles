@@ -1,0 +1,8 @@
+prefix=/catkin_ws/install
+
+Name: lrfpose_server
+Description: Description of lrfpose_server
+Version: 1.14.4
+Cflags: -I/catkin_ws/install/include
+Libs: -L/catkin_ws/install/lib -lamcl_sensors -lamcl_map -lamcl_pf
+Requires: rosbag roscpp dynamic_reconfigure tf nav_msgs std_srvs

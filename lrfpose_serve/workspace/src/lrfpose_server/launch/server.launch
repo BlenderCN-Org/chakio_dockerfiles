@@ -1,0 +1,86 @@
+<launch>
+	<arg name="sampleNum" default="150"/>
+	<arg name="samplingTime" default="0.1"/>
+	<arg name="lrf_name_prefix" default="env_lrf"/>
+	<arg name="lrf_scan_topic_prefix" default="/scan" />
+	<arg name="lrf_pose_topic_prefix" default="/pose" />
+	<arg name="lrf_frame_prefix" default="_link" />
+	<arg name="lrf_height" default="1.4" />
+
+	<arg name="lrf00_enable" default="true"/>
+	<arg name="lrf01_enable" default="true"/>
+	<arg name="lrf02_enable" default="true"/>
+	<arg name="lrf03_enable" default="true"/>
+
+	<arg name="lrf00_ip" default="192.168.1.58"/>
+	<arg name="lrf01_ip" default="192.168.1.59"/>
+	<arg name="lrf02_ip" default="192.168.1.60"/>
+	<arg name="lrf03_ip" default="192.168.1.61"/>
+
+	<node pkg="lrfpose_server" name="lrfpose_server"  type="lrfpose_server" output="screen"/>
+	<node pkg="rviz" type="rviz" name="lrfpose_server_rviz" args="-d $(find lrfpose_server)/rviz/lrfpose_server.rviz" />
+
+	<!-- cam00 -->
+	<group if="$(arg lrf00_enable)">
+		<!-- arg_setting -->
+		<arg name="id" default="00"/>
+		<arg name="lrf_name" default="$(arg lrf_name_prefix)$(arg id)"/>
+		<arg name="lrf_topic" default="$(arg lrf_name)$(arg lrf_scan_topic_prefix)" />
+		<arg name="lrf_frame" default="$(arg lrf_name)$(arg lrf_frame_prefix)" />
+		<arg name="lrf_ip" default="$(arg lrf00_ip)" />
+
+		<!-- LRF Publish -->	
+		<node ns="$(arg lrf_name)" name="$(arg lrf_name)" pkg="urg_node"  type="urg_node" output="screen">
+			<param name="ip_address"   value="$(arg lrf_ip)"/>
+			<param name="frame_id" 			value="$(arg lrf_frame)" />
+		</node> 
+	</group>
+
+	<!-- cam01 -->
+	<group if="$(arg lrf01_enable)">
+		<!-- arg_setting -->
+		<arg name="id" default="01"/>
+		<arg name="lrf_name" default="$(arg lrf_name_prefix)$(arg id)"/>
+		<arg name="lrf_topic" default="$(arg lrf_name)$(arg lrf_scan_topic_prefix)" />
+		<arg name="lrf_frame" default="$(arg lrf_name)$(arg lrf_frame_prefix)" />
+		<arg name="lrf_ip" default="$(arg lrf01_ip)" />
+
+		<!-- LRF Publish -->	
+		<node ns="$(arg lrf_name)" name="$(arg lrf_name)" pkg="urg_node"  type="urg_node" output="screen">
+			<param name="ip_address"   value="$(arg lrf_ip)"/>
+			<param name="frame_id" 			value="$(arg lrf_frame)" />
+		</node> 
+	</group>
+
+	<!-- cam02 -->
+	<group if="$(arg lrf02_enable)">
+		<!-- arg_setting -->
+		<arg name="id" default="02"/>
+		<arg name="lrf_name" default="$(arg lrf_name_prefix)$(arg id)"/>
+		<arg name="lrf_topic" default="$(arg lrf_name)$(arg lrf_scan_topic_prefix)" />
+		<arg name="lrf_frame" default="$(arg lrf_name)$(arg lrf_frame_prefix)" />
+		<arg name="lrf_ip" default="$(arg lrf02_ip)" />
+
+		<!-- LRF Publish -->	
+		<node ns="$(arg lrf_name)" name="$(arg lrf_name)" pkg="urg_node"  type="urg_node" output="screen">
+			<param name="ip_address"   value="$(arg lrf_ip)"/>
+			<param name="frame_id" 			value="$(arg lrf_frame)" />
+		</node> 
+	</group>
+
+	<!-- cam03 -->
+	<group if="$(arg lrf03_enable)">
+		<!-- arg_setting -->
+		<arg name="id" default="03"/>
+		<arg name="lrf_name" default="$(arg lrf_name_prefix)$(arg id)"/>
+		<arg name="lrf_topic" default="$(arg lrf_name)$(arg lrf_scan_topic_prefix)" />
+		<arg name="lrf_frame" default="$(arg lrf_name)$(arg lrf_frame_prefix)" />
+		<arg name="lrf_ip" default="$(arg lrf03_ip)" />
+
+		<!-- LRF Publish -->	
+		<node ns="$(arg lrf_name)" name="$(arg lrf_name)" pkg="urg_node"  type="urg_node" output="screen">
+			<param name="ip_address"   value="$(arg lrf_ip)"/>
+			<param name="frame_id" 			value="$(arg lrf_frame)" />
+		</node> 
+	</group>
+</launch>

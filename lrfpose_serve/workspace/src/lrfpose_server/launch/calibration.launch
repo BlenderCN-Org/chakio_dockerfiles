@@ -1,0 +1,180 @@
+<launch>
+	<arg name="sampleNum" default="150"/>
+	<arg name="samplingTime" default="0.1"/>
+	<arg name="lrf_name_prefix" default="env_lrf"/>
+	<arg name="lrf_scan_topic_prefix" default="/scan" />
+	<arg name="lrf_pose_topic_prefix" default="/pose" />
+	<arg name="lrf_frame_prefix" default="_link" />
+	<arg name="lrf_height" default="1.4" />
+
+	<arg name="pos_noise" default="0.02" />
+	<arg name="rot_noise" default="0.05" />
+
+	<arg name="enableVarX" default="0.006" />
+	<arg name="enableVarY" default="0.006" />
+	<arg name="enableVarT" default="0.003" />
+
+	<arg name="lrf00_enable" default="true"/>
+	<arg name="lrf01_enable" default="true"/>
+	<arg name="lrf02_enable" default="true"/>
+	<arg name="lrf03_enable" default="true"/>
+
+
+	<arg name="cam_name" default="env_cam"/>
+	<arg name="cam_frame_prefix" default="_link" />
+	<arg name="lrf00_pair_cam" default="0"/>
+	<arg name="lrf01_pair_cam" default="1"/>
+	<arg name="lrf02_pair_cam" default="2"/>
+	<arg name="lrf03_pair_cam" default="3"/>
+
+	<arg name="lrf00_ip" default="192.168.1.58"/>
+	<arg name="lrf01_ip" default="192.168.1.59"/>
+	<arg name="lrf02_ip" default="192.168.1.60"/>
+	<arg name="lrf03_ip" default="192.168.1.61"/>
+
+
+	 <!-- provide map -->
+	<node name="map_server" pkg="map_server" type="map_server"
+		args="$(find lrfpose_server)/map/map.yaml" respawn="false" >
+		<param name="use_map_topic"   value="true"/>
+		<param name="frame_id" 				value="map" />
+	</node> 
+
+	<!-- rviz -->
+	<node pkg="rviz" type="rviz" name="lrfpose_server_rviz" args="-d $(find lrfpose_server)/rviz/lrfpose_server.rviz" /> 
+
+	<!-- save -->
+	<node pkg="lrfpose_server" type="lrfpose_saver" name="lrfpose_saver" output="screen">
+		<param name="lrf_name"   value="$(arg lrf_name_prefix)"/>
+		<param name="lrf_pose_topic_prefix"   value="$(arg lrf_pose_topic_prefix)"/>
+		<param name="lrf_scan_topic_prefix"   value="$(arg lrf_scan_topic_prefix)"/>
+		<param name="lrf_tf_prefix"   value="$(arg lrf_frame_prefix)"/>
+		<param name="lrf00_enable"   value="$(arg lrf00_enable)"/>
+		<param name="lrf01_enable"   value="$(arg lrf01_enable)"/>
+		<param name="lrf02_enable"   value="$(arg lrf02_enable)"/>
+		<param name="lrf03_enable"   value="$(arg lrf03_enable)"/>
+		<param name="sampleNum" value="$(arg sampleNum)"/>
+		<param name="samplingTime" value="$(arg samplingTime)"/>
+		<param name="enableVarX" value="$(arg enableVarX)"/>
+		<param name="enableVarY" value="$(arg enableVarY)"/>
+		<param name="enableVarT" value="$(arg enableVarT)"/>
+	</node>
+
+	<!-- cam00 -->
+	<group if="$(arg lrf00_enable)">
+		<!-- arg_setting -->
+		<arg name="id" default="00"/>
+		<arg name="lrf_name" default="$(arg lrf_name_prefix)$(arg id)"/>
+		<arg name="lrf_topic" default="$(arg lrf_name)$(arg lrf_scan_topic_prefix)" />
+		<arg name="lrf_frame" default="$(arg lrf_name)$(arg lrf_frame_prefix)" />
+		<arg name="lrf_ip" default="$(arg lrf00_ip)" />
+
+		<!-- LRF Publish -->	
+		<node ns="$(arg lrf_name)" name="$(arg lrf_name)" pkg="urg_node"  type="urg_node" output="screen">
+			<param name="ip_address"   value="$(arg lrf_ip)"/>
+			<param name="frame_id" 			value="$(arg lrf_frame)" />
+		</node> 
+
+		<!-- localizaion -->
+		<node pkg="lrfpose_server" type="lrfpose_estimator" name="lrfpose_estimator$(arg id)" output="screen">
+			<param name="prefix"   value="$(arg lrf_name)"/>
+			<param name="laserHeight"   value="$(arg lrf_height)"/>
+			<remap from="scan" to="$(arg lrf_topic)" />
+			<param name="cam_name"   value="$(arg cam_name)"/>
+			<param name="cam_tf_prefix"   value="$(arg cam_frame_prefix)"/>
+			<param name="pair_cam"   value="$(arg lrf00_pair_cam)"/>
+			<param name="pos_noise"   value="$(arg pos_noise)"/>
+			<param name="rot_noise"   value="$(arg rot_noise)"/>
+			<rosparam file="$(find lrfpose_server)/config/$(arg lrf_name).yaml" command="load" />
+		</node>
+	</group>
+
+	<!-- cam01 -->
+	<group if="$(arg lrf01_enable)">
+		<!-- arg_setting -->
+		<arg name="id" default="01"/>
+		<arg name="lrf_name" default="$(arg lrf_name_prefix)$(arg id)"/>
+		<arg name="lrf_topic" default="$(arg lrf_name)$(arg lrf_scan_topic_prefix)" />
+		<arg name="lrf_frame" default="$(arg lrf_name)$(arg lrf_frame_prefix)" />
+		<arg name="lrf_ip" default="$(arg lrf01_ip)" />
+
+		<!-- LRF Publish -->	
+		<node ns="$(arg lrf_name)" name="$(arg lrf_name)" pkg="urg_node"  type="urg_node" output="screen">
+			<param name="ip_address"   value="$(arg lrf_ip)"/>
+			<param name="frame_id" 			value="$(arg lrf_frame)" />
+		</node> 
+
+		<!-- localizaion -->
+		<node pkg="lrfpose_server" type="lrfpose_estimator" name="lrfpose_estimator$(arg id)" output="screen">
+			<param name="prefix"   value="$(arg lrf_name)"/>
+			<param name="laserHeight"   value="$(arg lrf_height)"/>
+			<remap from="scan" to="$(arg lrf_topic)" />
+			<param name="cam_name"   value="$(arg cam_name)"/>
+			<param name="cam_tf_prefix"   value="$(arg cam_frame_prefix)"/>
+			<param name="pair_cam"   value="$(arg lrf01_pair_cam)"/>
+			<param name="pos_noise"   value="$(arg pos_noise)"/>
+			<param name="rot_noise"   value="$(arg rot_noise)"/>
+			<rosparam file="$(find lrfpose_server)/config/$(arg lrf_name).yaml" command="load" />
+		</node>
+	</group>
+
+	<!-- cam02 -->
+	<group if="$(arg lrf01_enable)">
+		<!-- arg_setting -->
+		<arg name="id" default="02"/>
+		<arg name="lrf_name" default="$(arg lrf_name_prefix)$(arg id)"/>
+		<arg name="lrf_topic" default="$(arg lrf_name)$(arg lrf_scan_topic_prefix)" />
+		<arg name="lrf_frame" default="$(arg lrf_name)$(arg lrf_frame_prefix)" />
+		<arg name="lrf_ip" default="$(arg lrf02_ip)" />
+
+		<!-- LRF Publish -->	
+		<node ns="$(arg lrf_name)" name="$(arg lrf_name)" pkg="urg_node"  type="urg_node" output="screen">
+			<param name="ip_address"   value="$(arg lrf_ip)"/>
+			<param name="frame_id" 			value="$(arg lrf_frame)" />
+		</node> 
+
+		<!-- localizaion -->
+		<node pkg="lrfpose_server" type="lrfpose_estimator" name="lrfpose_estimator$(arg id)" output="screen">
+			<param name="prefix"   value="$(arg lrf_name)"/>
+			<param name="laserHeight"   value="$(arg lrf_height)"/>
+			<remap from="scan" to="$(arg lrf_topic)" />
+			<param name="cam_name"   value="$(arg cam_name)"/>
+			<param name="cam_tf_prefix"   value="$(arg cam_frame_prefix)"/>
+			<param name="pair_cam"   value="$(arg lrf02_pair_cam)"/>
+			<param name="pos_noise"   value="$(arg pos_noise)"/>
+			<param name="rot_noise"   value="$(arg rot_noise)"/>
+			<rosparam file="$(find lrfpose_server)/config/$(arg lrf_name).yaml" command="load" />
+		</node>
+	</group>
+
+	<!-- cam03 -->
+	<group if="$(arg lrf01_enable)">
+		<!-- arg_setting -->
+		<arg name="id" default="03"/>
+		<arg name="lrf_name" default="$(arg lrf_name_prefix)$(arg id)"/>
+		<arg name="lrf_topic" default="$(arg lrf_name)$(arg lrf_scan_topic_prefix)" />
+		<arg name="lrf_frame" default="$(arg lrf_name)$(arg lrf_frame_prefix)" />
+		<arg name="lrf_ip" default="$(arg lrf03_ip)" />
+
+		<!-- LRF Publish -->	
+		<node ns="$(arg lrf_name)" name="$(arg lrf_name)" pkg="urg_node"  type="urg_node" output="screen">
+			<param name="ip_address"   value="$(arg lrf_ip)"/>
+			<param name="frame_id" 			value="$(arg lrf_frame)" />
+		</node> 
+
+		<!-- localizaion -->
+		<node pkg="lrfpose_server" type="lrfpose_estimator" name="lrfpose_estimator$(arg id)" output="screen">
+			<param name="prefix"   value="$(arg lrf_name)"/>
+			<param name="laserHeight"   value="$(arg lrf_height)"/>
+			<remap from="scan" to="$(arg lrf_topic)" />
+			<param name="cam_name"   value="$(arg cam_name)"/>
+			<param name="cam_tf_prefix"   value="$(arg cam_frame_prefix)"/>
+			<param name="pair_cam"   value="$(arg lrf03_pair_cam)"/>
+			<param name="pos_noise"   value="$(arg pos_noise)"/>
+			<param name="rot_noise"   value="$(arg rot_noise)"/>
+			<rosparam file="$(find lrfpose_server)/config/$(arg lrf_name).yaml" command="load" />
+		</node>
+	</group>
+
+	
+</launch>

@@ -6,8 +6,8 @@ docker run -it \
 --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
 --env="QT_X11_NO_MITSHM=1" \
 --rm \
--v "/$(pwd)/ros_setting.sh:/ros_setting.sh" \
--v "/$(pwd)/cam00_startup.sh:/startup.sh" \
+-v "/$(pwd)/../../global_setting/global_ros_setting.sh:/ros_setting.sh" \
+-v "/$(pwd)/startup/cam00_startup.sh:/startup.sh" \
 -v /etc/group:/etc/group:ro \
 -v /etc/passwd:/etc/passwd:ro \
 --net host \

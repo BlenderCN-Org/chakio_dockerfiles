@@ -77,7 +77,9 @@ public:
             {
                 this->updateAverage(cameraIndex);
                 sampleCounters[cameraIndex]++;
+                ROS_INFO("Camera%d, OK!!",cameraIndex);
             }
+
         }
 
         int minCount = sampleNum+1;
@@ -99,7 +101,7 @@ public:
         }
         else if (minCount<sampleNum)
         {
-            std::cout<<"calibrating now! sample:"<<minCount<<"/"<<sampleNum<<std::endl;
+            ROS_INFO("calibrating now! sample:%d/%d",minCount,sampleNum);
         }
         
     }
@@ -109,6 +111,8 @@ public:
         cameraLinkName << "/env_cam0"<<cameraIndex<<output_frame;
 
         tf::StampedTransform tfFromMapToCamera;
+
+        //ROS_INFO("Listen to %s...",cameraLinkName.str().c_str());
         try{
             _ls.lookupTransform( "map",  cameraLinkName.str(),ros::Time(0), tfFromMapToCamera);
             cameraPose.setOrigin(tfFromMapToCamera.getOrigin());

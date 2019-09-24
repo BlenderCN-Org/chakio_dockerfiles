@@ -1,11 +1,11 @@
 <launch>
 	<!-- option of camera pose estimation -->
 	<arg name="markerNum" default="4"/>
-	<arg name="sampleNum" default="400"/>
-	<arg name="samplingTime" default="0.2"/>
-	<arg name="image_enable" default="true"/>
+	<arg name="sampleNum" default="500"/>
+	<arg name="samplingTime" default="0.1"/>
+	<arg name="image_enable" default="false"/>
 	<arg name="pcd_enable" default="true"/>
-	<arg name="distanceThreshold" default="0.15"/>
+	<arg name="distanceThreshold" default="0.4"/>
 
 	<!-- position of ar_marker -->
 	<arg name="cam00_enable" default="true"/>
@@ -18,35 +18,43 @@
 	<arg name="cam07_enable" default="false"/>
 
 	<!-- position of ar_marker -->
-	<arg name="marker1_pos_x" default="0.50"/>
-	<arg name="marker1_pos_y" default="0.50"/>
-	
-	<arg name="marker2_pos_x" default="0.50"/>
-	<arg name="marker2_pos_y" default="-0.50"/>
+	<arg name="marker0_pos_x" default="0.695"/>
+	<arg name="marker0_pos_y" default="-0.305"/>
+	<arg name="marker0_pos_z" default="0.70"/>
 
-	<arg name="marker3_pos_x" default="-0.50"/>
-	<arg name="marker3_pos_y" default="0.50"/>
+	<arg name="marker1_pos_x" default="0.695"/>
+	<arg name="marker1_pos_y" default="0.305"/>
+	<arg name="marker1_pos_z" default="0.70"/>
 	
-	<arg name="marker4_pos_x" default="-0.50"/>
+	<arg name="marker2_pos_x" default="1.305"/>
+	<arg name="marker2_pos_y" default="-0.305"/>
+	<arg name="marker2_pos_z" default="0.70"/>
+
+	<arg name="marker3_pos_x" default="1.305"/>
+	<arg name="marker3_pos_y" default="0.305"/>
+	<arg name="marker3_pos_z" default="0.70"/>
+	
+	<arg name="marker4_pos_x" default="4.00"/>
 	<arg name="marker4_pos_y" default="-0.50"/>
+	<arg name="marker4_pos_z" default="0.70"/>
 
-	<arg name="marker5_pos_x" default="0.50"/>
+	<arg name="marker5_pos_x" default="5.00"/>
 	<arg name="marker5_pos_y" default="0.50"/>
+	<arg name="marker5_pos_z" default="0.70"/>
 	
-	<arg name="marker6_pos_x" default="0.50"/>
+	<arg name="marker6_pos_x" default="5.00"/>
 	<arg name="marker6_pos_y" default="-0.50"/>
+	<arg name="marker6_pos_z" default="0.70"/>
 	
-	<arg name="marker7_pos_x" default="-0.50"/>
+	<arg name="marker7_pos_x" default="5.00"/>
 	<arg name="marker7_pos_y" default="0.50"/>
-
-	<arg name="marker8_pos_x" default="-0.50"/>
-	<arg name="marker8_pos_y" default="-0.50"/>
+	<arg name="marker7_pos_z" default="0.70"/>
 	
 
 	<!-- option of AR marker tracker -->
-	<arg name="marker_size" default="27.0" />
-	<arg name="max_new_marker_error" default="0.01" />
-	<arg name="max_track_error" default="0.01" />
+	<arg name="marker_size" default="26.7" />
+	<arg name="max_new_marker_error" default="0.001" />
+	<arg name="max_track_error" default="0.002" />
 
 	<!-- option of camera topic -->
 	<arg name="cam_name" default="env_cam"/>
@@ -54,35 +62,44 @@
 	<arg name="info_topic" default="/hd/camera_info"/>	
 	<arg name="pcd_topic" default="/hd/points" />
 	<arg name="pcd_info_topic" default="/hd/camera_info"/>	
-	<arg name="output_frame" default="_opitical_ir_frame" />
+	<arg name="output_frame" default="_link" />
 
 	<!-- ar pose server -->
 	<node pkg="camerapose_server" name="arpose_server"  type="arpose_server" output="screen">
 		<param name="markerNum" value="$(arg markerNum)"/>
 
+		<param name="marker0_pos_x" value="$(arg marker0_pos_x)"/>
+		<param name="marker0_pos_y" value="$(arg marker0_pos_y)"/>
+		<param name="marker0_pos_z" value="$(arg marker0_pos_z)"/>
+
 		<param name="marker1_pos_x" value="$(arg marker1_pos_x)"/>
 		<param name="marker1_pos_y" value="$(arg marker1_pos_y)"/>
+		<param name="marker1_pos_z" value="$(arg marker1_pos_z)"/>
 
 		<param name="marker2_pos_x" value="$(arg marker2_pos_x)"/>
 		<param name="marker2_pos_y" value="$(arg marker2_pos_y)"/>
+		<param name="marker2_pos_z" value="$(arg marker2_pos_z)"/>
 
 		<param name="marker3_pos_x" value="$(arg marker3_pos_x)"/>
 		<param name="marker3_pos_y" value="$(arg marker3_pos_y)"/>
+		<param name="marker3_pos_z" value="$(arg marker3_pos_z)"/>
 
 		<param name="marker4_pos_x" value="$(arg marker4_pos_x)"/>
 		<param name="marker4_pos_y" value="$(arg marker4_pos_y)"/>
+		<param name="marker4_pos_z" value="$(arg marker4_pos_z)"/>
 
 		<param name="marker5_pos_x" value="$(arg marker5_pos_x)"/>
 		<param name="marker5_pos_y" value="$(arg marker5_pos_y)"/>
+		<param name="marker5_pos_z" value="$(arg marker5_pos_z)"/>
 
 		<param name="marker6_pos_x" value="$(arg marker6_pos_x)"/>
 		<param name="marker6_pos_y" value="$(arg marker6_pos_y)"/>
+		<param name="marker6_pos_z" value="$(arg marker6_pos_z)"/>
 
 		<param name="marker7_pos_x" value="$(arg marker7_pos_x)"/>
 		<param name="marker7_pos_y" value="$(arg marker7_pos_y)"/>
+		<param name="marker7_pos_z" value="$(arg marker7_pos_z)"/>
 
-		<param name="marker8_pos_x" value="$(arg marker8_pos_x)"/>
-		<param name="marker8_pos_y" value="$(arg marker8_pos_y)"/>
 	</node>
 
 	<!-- camera pose saver -->
@@ -96,6 +113,7 @@
 		<param name="cam06_enable" value="$(arg cam06_enable)"/>
 		<param name="cam07_enable" value="$(arg cam07_enable)"/>
 		<param name="sampleNum" value="$(arg sampleNum)"/>
+		<param name="output_frame" value="$(arg output_frame)"/>
 		<param name="distanceThreshold" value="$(arg distanceThreshold)"/>
 	</node>
 
@@ -114,8 +132,8 @@
 		<arg name="output00_frame" default="$(arg cam00_name)$(arg output_frame)" />
 
 		<!-- ar_track_alvar image -->
-		<node name="ar_track_alvar00" pkg="ar_track_alvar" type="individualMarkersNoKinect" respawn="false" output="screen"
-		args="$(arg marker_size) $(arg max_new_marker_error) $(arg max_track_error) $(arg cam00_image_topic) $(arg cam00_info_topic) $(arg output00_frame) $(arg cam00_name)" />
+		<!--node name="ar_track_alvar00" pkg="ar_track_alvar" type="individualMarkersNoKinect" respawn="false" output="screen"
+		args="$(arg marker_size) $(arg max_new_marker_error) $(arg max_track_error) $(arg cam00_image_topic) $(arg cam00_info_topic) $(arg output00_frame) $(arg cam00_name)" /-->
 		<!-- ar_track_alvar pcd -->
 		<node name="ar_track_alvar00_pcd" pkg="ar_track_alvar" type="individualMarkers" respawn="false" output="screen"
 		args="$(arg marker_size) $(arg max_new_marker_error) $(arg max_track_error) $(arg cam00_pcd_topic) $(arg cam00_pcd_info_topic) $(arg output00_frame) $(arg cam00_name)" />
@@ -141,8 +159,8 @@
 		<arg name="output01_frame" default="$(arg cam01_name)$(arg output_frame)" />
 
 		<!-- ar_track_alvar image -->
-		<node name="ar_track_alvar01" pkg="ar_track_alvar" type="individualMarkersNoKinect" respawn="false" output="screen"
-		args="$(arg marker_size) $(arg max_new_marker_error) $(arg max_track_error) $(arg cam01_image_topic) $(arg cam01_info_topic) $(arg output01_frame) $(arg cam01_name)" />
+		<!--node name="ar_track_alvar01" pkg="ar_track_alvar" type="individualMarkersNoKinect" respawn="false" output="screen"
+		args="$(arg marker_size) $(arg max_new_marker_error) $(arg max_track_error) $(arg cam01_image_topic) $(arg cam01_info_topic) $(arg output01_frame) $(arg cam01_name)" /-->
 		<!-- ar_track_alvar pcd -->
 		<node name="ar_track_alvar01_pcd" pkg="ar_track_alvar" type="individualMarkers" respawn="false" output="screen"
 		args="$(arg marker_size) $(arg max_new_marker_error) $(arg max_track_error) $(arg cam01_pcd_topic) $(arg cam01_pcd_info_topic) $(arg output01_frame) $(arg cam01_name)" />
@@ -168,8 +186,8 @@
 		<arg name="output02_frame" default="$(arg cam02_name)$(arg output_frame)" />
 
 		<!-- ar_track_alvar image -->
-		<node name="ar_track_alvar02" pkg="ar_track_alvar" type="individualMarkersNoKinect" respawn="false" output="screen"
-		args="$(arg marker_size) $(arg max_new_marker_error) $(arg max_track_error) $(arg cam02_image_topic) $(arg cam02_info_topic) $(arg output02_frame) $(arg cam02_name)" />
+		<!--node name="ar_track_alvar02" pkg="ar_track_alvar" type="individualMarkersNoKinect" respawn="false" output="screen"
+		args="$(arg marker_size) $(arg max_new_marker_error) $(arg max_track_error) $(arg cam02_image_topic) $(arg cam02_info_topic) $(arg output02_frame) $(arg cam02_name)" /-->
 		<!-- ar_track_alvar pcd -->
 		<node name="ar_track_alvar02_pcd" pkg="ar_track_alvar" type="individualMarkers" respawn="false" output="screen"
 		args="$(arg marker_size) $(arg max_new_marker_error) $(arg max_track_error) $(arg cam02_pcd_topic) $(arg cam02_pcd_info_topic) $(arg output02_frame) $(arg cam02_name)" />
@@ -195,8 +213,8 @@
 		<arg name="output03_frame" default="$(arg cam03_name)$(arg output_frame)" />
 
 		<!-- ar_track_alvar image -->
-		<node name="ar_track_alvar03" pkg="ar_track_alvar" type="individualMarkersNoKinect" respawn="false" output="screen"
-		args="$(arg marker_size) $(arg max_new_marker_error) $(arg max_track_error) $(arg cam03_image_topic) $(arg cam03_info_topic) $(arg output03_frame) $(arg cam03_name)" />
+		<!--node name="ar_track_alvar03" pkg="ar_track_alvar" type="individualMarkersNoKinect" respawn="false" output="screen"
+		args="$(arg marker_size) $(arg max_new_marker_error) $(arg max_track_error) $(arg cam03_image_topic) $(arg cam03_info_topic) $(arg output03_frame) $(arg cam03_name)" /-->
 		<!-- ar_track_alvar pcd -->
 		<node name="ar_track_alvar03_pcd" pkg="ar_track_alvar" type="individualMarkers" respawn="false" output="screen"
 		args="$(arg marker_size) $(arg max_new_marker_error) $(arg max_track_error) $(arg cam03_pcd_topic) $(arg cam03_pcd_info_topic) $(arg output03_frame) $(arg cam03_name)" />
@@ -222,8 +240,8 @@
 		<arg name="output04_frame" default="$(arg cam04_name)$(arg output_frame)" />
 
 		<!-- ar_track_alvar image -->
-		<node name="ar_track_alvar04" pkg="ar_track_alvar" type="individualMarkersNoKinect" respawn="false" output="screen"
-		args="$(arg marker_size) $(arg max_new_marker_error) $(arg max_track_error) $(arg cam04_image_topic) $(arg cam04_info_topic) $(arg output04_frame) $(arg cam04_name)" />
+		<!--node name="ar_track_alvar04" pkg="ar_track_alvar" type="individualMarkersNoKinect" respawn="false" output="screen"
+		args="$(arg marker_size) $(arg max_new_marker_error) $(arg max_track_error) $(arg cam04_image_topic) $(arg cam04_info_topic) $(arg output04_frame) $(arg cam04_name)" /-->
 		<!-- ar_track_alvar pcd -->
 		<node name="ar_track_alvar04_pcd" pkg="ar_track_alvar" type="individualMarkers" respawn="false" output="screen"
 		args="$(arg marker_size) $(arg max_new_marker_error) $(arg max_track_error) $(arg cam04_pcd_topic) $(arg cam04_pcd_info_topic) $(arg output04_frame) $(arg cam04_name)" />

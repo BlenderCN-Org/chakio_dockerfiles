@@ -44,7 +44,7 @@ private:
     std::string frameName = "";
     std::stringstream cameraLinkName;
     int _markerNum = 1;
-    double _planeDetectionDistanceTh = 0.001;
+
     bool _image_enable = false;
     bool _pcd_enable = false;
     bool _calTF = false;
@@ -61,7 +61,7 @@ public:
         std::cout<<"cam_name:"<<_cam_name<<std::endl;
         std::cout<<"markerNum:"<<_markerNum<<std::endl;
 
-        cameraLinkName << _cam_name <<frameName;
+        cameraLinkName <<frameName;
 
         _sub_ar_cloud = _nh.subscribe( (_cam_name+"/ar_marker_cloud").c_str(), 1, &cameraPoseEstimater::arCloudCallback, this);
         _timer = _nh.createTimer(ros::Duration(0.1), &cameraPoseEstimater::timerCallback,this);
@@ -90,7 +90,7 @@ public:
             arMarkerName << "ar_marker_"<<markerIndex;
             arMarkerWithCameraName << _cam_name<<"_ar_marker_"<<markerIndex;
             
-   
+            //std::cout<<arMarkerWithCameraName.str()<<std::endl;
             tf::StampedTransform cameraPoseCandidateFromAR;
 
             if(this->getCameraPoseFromAR(cameraPoseCandidateFromAR,cameraLinkName.str(),arMarkerWithCameraName.str(),_pcd_enable, _image_enable))
@@ -112,7 +112,7 @@ public:
             }
            
         }
-        //std::cout<<cameraPoses.size()<<std::endl;
+        ROS_INFO("%s:Detected AR Marker Num%d",_cam_name.c_str(),cameraPoses.size());
         if(cameraPoses.size()>0)
         {
             tf::Transform aveCameraPoseFromAR  = this->getAveragePose(cameraPoses);
@@ -215,6 +215,7 @@ public:
     {
         //std::cout<<"broadcast"<<std::endl;
         _br.sendTransform(tf::StampedTransform(pose, ros::Time::now(),from,to));
+        //this->printTransform(pose);
     }
     //--------------------------------------------------------------
     void broadcastCameraPoseCandidate(tf::Transform cameraPose, std::string cameraLinkName, std::string arMarkerName)

@@ -1,5 +1,5 @@
 <launch>
-	<arg name="output_frame" default="_opitical_ir_frame" />
+	<arg name="output_frame" default="_link" />
 	<node pkg="camerapose_server" name="camerapose_server"  type="camerapose_server" output="screen">
 		<param name="output_frame" value="$(arg output_frame)"/>
 	</node>

@@ -11,8 +11,10 @@ docker run -it \
 -v /etc/group:/etc/group:ro \
 -v /etc/passwd:/etc/passwd:ro \
 --net host \
---device /dev/bus/usb/006/003 \
+--privileged \
 ros:ros-kinect-v2
+
+#--device /dev/bus/usb/006/007 \
 
 # how to show usb list
 # lsusb -t

@@ -23,15 +23,19 @@ public:
         {
             std::stringstream ssParamXName;
             std::stringstream ssParamYName;
-            ssParamXName << "/arpose_server/marker" << markerIndex+1 << "_pos_x";
-            ssParamYName << "/arpose_server/marker" << markerIndex+1 << "_pos_y";
+            std::stringstream ssParamZName;
+            ssParamXName << "/arpose_server/marker" << markerIndex << "_pos_x";
+            ssParamYName << "/arpose_server/marker" << markerIndex << "_pos_y";
+            ssParamZName << "/arpose_server/marker" << markerIndex << "_pos_z";
             double markerPosX=0;
             double markerPosY=0;
+            double markerPosZ=0;
 
             _nh.getParam(ssParamXName.str(), markerPosX);
             _nh.getParam(ssParamYName.str(), markerPosY);
-            armarker_positions[markerIndex].setValue(markerPosX,markerPosY,0);
-            std::cout<<"x:"<<markerPosX<<", y:"<<markerPosY<<std::endl;
+            _nh.getParam(ssParamZName.str(), markerPosZ);
+            armarker_positions[markerIndex].setValue(markerPosX,markerPosY,markerPosZ);
+            std::cout<<"x:"<<markerPosX<<", y:"<<markerPosY<<", z:"<<markerPosZ<<std::endl;
         }
     }
     void timerCallback(const ros::TimerEvent&)

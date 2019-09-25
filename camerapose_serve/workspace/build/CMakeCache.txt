@@ -248,7 +248,7 @@ RT_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/librt.so
 SETUPTOOLS_DEB_LAYOUT:BOOL=ON
 
 //Name of the computer/site where compile is being run
-SITE:STRING=ytnpc2019c
+SITE:STRING=dlbox
 
 //Path to a file.
 TinyXML_INCLUDE_DIR:PATH=/usr/include

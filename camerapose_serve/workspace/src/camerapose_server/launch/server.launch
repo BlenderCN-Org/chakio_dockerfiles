@@ -1,7 +1,25 @@
 <launch>
 	<arg name="output_frame" default="_link" />
+	<!-- position of ar_marker -->
+	<arg name="cam00_enable" default="true"/>
+	<arg name="cam01_enable" default="false"/>
+	<arg name="cam02_enable" default="false"/>
+	<arg name="cam03_enable" default="false"/>
+	<arg name="cam04_enable" default="false"/>
+	<arg name="cam05_enable" default="false"/>
+	<arg name="cam06_enable" default="false"/>
+	<arg name="cam07_enable" default="false"/>
+
 	<node pkg="camerapose_server" name="camerapose_server"  type="camerapose_server" output="screen">
 		<param name="output_frame" value="$(arg output_frame)"/>
+		<param name="cam00_enable" value="$(arg cam00_enable)"/>
+		<param name="cam01_enable" value="$(arg cam01_enable)"/>
+		<param name="cam02_enable" value="$(arg cam02_enable)"/>
+		<param name="cam03_enable" value="$(arg cam03_enable)"/>
+		<param name="cam04_enable" value="$(arg cam04_enable)"/>
+		<param name="cam05_enable" value="$(arg cam05_enable)"/>
+		<param name="cam06_enable" value="$(arg cam06_enable)"/>
+		<param name="cam07_enable" value="$(arg cam07_enable)"/>
 	</node>
 	<!-- rviz -->
 	<node pkg="rviz" type="rviz" name="ar_marker_rviz" args="-d $(find camerapose_server)/rviz/ar_marker_double.rviz" />

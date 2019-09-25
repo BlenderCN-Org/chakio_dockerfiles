@@ -25,7 +25,8 @@ private:
     int sampleNum = 100;
     double samplingTime = 0.3;
     double distanceThreshold = 0.5;
-    std::string fileName;
+    std::string fileDirectry;
+    bool calibrating = true;
 public:
     cameraPoseSaver()
     {
@@ -48,7 +49,7 @@ public:
         cameraPoseSamples.resize(cameraNum);
         availableCameraPoseSamples.resize(cameraNum);
         
-        fileName ="/catkin_ws/src/camerapose_server/cameraPose.csv";
+        fileDirectry ="/catkin_ws/src/camerapose_server";
         timer = _nh.createTimer(ros::Duration(samplingTime), &cameraPoseSaver::timerCallback,this);
         
     }
@@ -71,39 +72,45 @@ public:
     }
     void timerCallback(const ros::TimerEvent&)
     {
-        for(int cameraIndex=0;cameraIndex<cameraNum;cameraIndex++)
+        if(calibrating)
         {
-            if(this->getCameraPose(cameraIndex))
+            for(int cameraIndex=0;cameraIndex<cameraNum;cameraIndex++)
             {
-                this->updateAverage(cameraIndex);
-                sampleCounters[cameraIndex]++;
-                ROS_INFO("Camera%d, OK!!",cameraIndex);
-            }
-
-        }
-
-        int minCount = sampleNum+1;
-        for(int cameraIndex=0;cameraIndex<cameraNum;cameraIndex++)
-        {
-            if(camera_enables[cameraIndex] )
-            {
-                if( minCount>sampleCounters[cameraIndex])
+                if(this->getCameraPose(cameraIndex))
                 {
-                    minCount = sampleCounters[cameraIndex];
-                }   
+                    this->updateAverage(cameraIndex);
+                    sampleCounters[cameraIndex]++;
+                    ROS_INFO("Camera%d, OK!!",cameraIndex);
+                }
+            }
+
+            int minCount = sampleNum+1;
+            for(int cameraIndex=0;cameraIndex<cameraNum;cameraIndex++)
+            {
+                if(camera_enables[cameraIndex] )
+                {
+                    if( minCount>sampleCounters[cameraIndex])
+                    {
+                        minCount = sampleCounters[cameraIndex];
+                    }   
+                }
+            }
+            if(minCount==sampleNum)
+            {
+                this->getValidPose();
+                this->getAverages();
+                this->savePoses();
+                calibrating = false;
+            }
+            else if (minCount<sampleNum)
+            {
+                ROS_INFO("calibrating now! sample:%d/%d",minCount,sampleNum);
             }
         }
-        if(minCount==sampleNum)
+        else
         {
-            this->getValidPose();
-            this->getAverages();
-            this->savePoses();
-        }
-        else if (minCount<sampleNum)
-        {
-            ROS_INFO("calibrating now! sample:%d/%d",minCount,sampleNum);
-        }
-        
+            ROS_INFO("#######calibrating completed#######");
+        }        
     }
     bool getCameraPose(int cameraIndex)
     {
@@ -170,7 +177,7 @@ public:
             tf::Quaternion inputQuaternion = inputPose.getRotation();
             averageQuaternion = averageQuaternion.slerp(inputQuaternion,1.0/(sampleCounters[cameraIndex]+1));
 
-            /*
+            
             std::cout<<"Camera:"<<cameraIndex<<std::endl;
             std::cout<<"    input"<<std::endl;
             std::cout<<"        x:"<<inputPosition.getX()<<" y:"<<inputPosition.getY()<<" z:"<<inputPosition.getZ()<<std::endl;
@@ -180,47 +187,48 @@ public:
             std::cout<<"    average"<<std::endl;
             std::cout<<"        x:"<<averagePosition.getX()<<" y:"<<averagePosition.getY()<<" z:"<<averagePosition.getZ()<<std::endl;
             std::cout<<"        x:"<< averageQuaternion.getAxis().x()<<" y:"<< averageQuaternion.getAxis().y()<<" z:"<< averageQuaternion.getAxis().z()<<" w:"<< averageQuaternion.getW()<<std::endl;
-            */
+            
             averageCameraPoses[cameraIndex].setOrigin(averagePosition);
             averageCameraPoses[cameraIndex].setRotation(averageQuaternion);
         }
     }
     void savePoses()
     {
-        std::string data;
         for(int cameraIndex=0;cameraIndex<cameraNum;cameraIndex++)
         {
             if(camera_enables[cameraIndex])
             {
+                std::string data;
                 std::stringstream ssData;
 
                 tf::Transform averagePose = improvedAverageCameraPoses[cameraIndex];
                 tf::Vector3 averagePosition = averagePose.getOrigin();
                 tf::Quaternion averageQuaternion = averagePose.getRotation();
 
-                // CameraNum
-                ssData << cameraIndex<<",";
                 // Position
                 ssData << averagePosition.getX()<<","<<averagePosition.getY()<<","<<averagePosition.getZ()<<",";
                 //Quaternion
-                ssData << averageQuaternion.getAxis().x()<<","<< averageQuaternion.getAxis().y()<<","<< averageQuaternion.getAxis().z()<<","<< averageQuaternion.getW()<<std::endl;
+                ssData << averageQuaternion.getAxis().x()<<","<< averageQuaternion.getAxis().y()<<","<< averageQuaternion.getAxis().z()<<","<< averageQuaternion.getW();
 
                 //add Data
                 data += ssData.str();
+
+                std::stringstream fileName;
+                fileName << fileDirectry << "/camera"<< cameraIndex <<"Pose.csv";
+
+                if(!remove(fileName.str().c_str()))
+                {
+                    std::cout<<"Succeed to delete file"<<std::endl;
+                }
+                else
+                {
+                    std::cout<<"Failed to delete file"<<std::endl;
+                }
+                std::ofstream writingCSV;
+                writingCSV.open(fileName.str().c_str(), std::ios::out);
+                writingCSV << data << std::endl;
             }
         }
-        if(!remove(fileName.c_str()))
-        {
-            std::cout<<"Succeed to delete file"<<std::endl;
-        }
-        else
-        {
-            std::cout<<"Failed to delete file"<<std::endl;
-        }
-        std::ofstream writingCSV;
-        writingCSV.open(fileName.c_str(), std::ios::out);
-        writingCSV << data << std::endl;
-
         ROS_INFO("===complete calibration===");
     }
 };

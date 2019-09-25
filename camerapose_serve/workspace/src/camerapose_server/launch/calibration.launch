@@ -1,37 +1,37 @@
 <launch>
 	<!-- option of camera pose estimation -->
 	<arg name="markerNum" default="4"/>
-	<arg name="sampleNum" default="500"/>
-	<arg name="samplingTime" default="0.1"/>
+	<arg name="sampleNum" default="1"/>
+	<arg name="samplingTime" default="0.3"/>
 	<arg name="image_enable" default="false"/>
 	<arg name="pcd_enable" default="true"/>
-	<arg name="distanceThreshold" default="0.4"/>
+	<arg name="distanceThreshold" default="0.1"/>
 
 	<!-- position of ar_marker -->
 	<arg name="cam00_enable" default="true"/>
-	<arg name="cam01_enable" default="true"/>
-	<arg name="cam02_enable" default="true"/>
-	<arg name="cam03_enable" default="true"/>
+	<arg name="cam01_enable" default="false"/>
+	<arg name="cam02_enable" default="false"/>
+	<arg name="cam03_enable" default="false"/>
 	<arg name="cam04_enable" default="false"/>
 	<arg name="cam05_enable" default="false"/>
 	<arg name="cam06_enable" default="false"/>
 	<arg name="cam07_enable" default="false"/>
 
 	<!-- position of ar_marker -->
-	<arg name="marker0_pos_x" default="0.695"/>
-	<arg name="marker0_pos_y" default="-0.305"/>
+	<arg name="marker0_pos_x" default="0.76"/>
+	<arg name="marker0_pos_y" default="-0.24"/>
 	<arg name="marker0_pos_z" default="0.70"/>
 
-	<arg name="marker1_pos_x" default="0.695"/>
-	<arg name="marker1_pos_y" default="0.305"/>
+	<arg name="marker1_pos_x" default="0.76"/>
+	<arg name="marker1_pos_y" default="0.24"/>
 	<arg name="marker1_pos_z" default="0.70"/>
 	
-	<arg name="marker2_pos_x" default="1.305"/>
-	<arg name="marker2_pos_y" default="-0.305"/>
+	<arg name="marker2_pos_x" default="1.24"/>
+	<arg name="marker2_pos_y" default="-0.24"/>
 	<arg name="marker2_pos_z" default="0.70"/>
 
-	<arg name="marker3_pos_x" default="1.305"/>
-	<arg name="marker3_pos_y" default="0.305"/>
+	<arg name="marker3_pos_x" default="1.24"/>
+	<arg name="marker3_pos_y" default="0.24"/>
 	<arg name="marker3_pos_z" default="0.70"/>
 	
 	<arg name="marker4_pos_x" default="4.00"/>
@@ -52,9 +52,9 @@
 	
 
 	<!-- option of AR marker tracker -->
-	<arg name="marker_size" default="26.7" />
-	<arg name="max_new_marker_error" default="0.001" />
-	<arg name="max_track_error" default="0.002" />
+	<arg name="marker_size" default="29.5" />
+	<arg name="max_new_marker_error" default="0.03" />
+	<arg name="max_track_error" default="0.03" />
 
 	<!-- option of camera topic -->
 	<arg name="cam_name" default="env_cam"/>

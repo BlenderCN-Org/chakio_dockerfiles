@@ -16,60 +16,80 @@ private:
     std::vector< tf::Transform > cameraPoses;
     std::stringstream cameraLinkName;
     std::string output_frame;
-    std::string fileName;
+    std::string fileDirectry;
+    
     std::vector<double> cameraIndexes;
+    bool camera_enables[8]={false,false,false,false,false,false,false,false};
+
 public:
     cameraPoseServer()
     {
         ros::NodeHandle _pnh("~");
         _pnh.getParam("output_frame", output_frame);
-        fileName ="/catkin_ws/src/camerapose_server/cameraPose.csv";
-        std::ifstream readingCSV(fileName.c_str());
-        std::string oneLine;
-        int lineIndex=0;
-        while(std::getline(readingCSV,oneLine))
+        _pnh.getParam("cam00_enable", camera_enables[0]);
+        _pnh.getParam("cam01_enable", camera_enables[1]);
+        _pnh.getParam("cam02_enable", camera_enables[2]);
+        _pnh.getParam("cam03_enable", camera_enables[3]);
+        _pnh.getParam("cam04_enable", camera_enables[4]);
+        _pnh.getParam("cam05_enable", camera_enables[5]);
+        _pnh.getParam("cam06_enable", camera_enables[6]);
+        _pnh.getParam("cam07_enable", camera_enables[7]);
+ 
+        fileDirectry ="/catkin_ws/src/camerapose_server";
+        
+
+        for( int cameraIndex=0; cameraIndex<8; cameraIndex++)
         {
-
-            std::string tmp;
-            tf::Vector3 position;
-            double quaternionValue[4];
-            std::istringstream stream(oneLine);
-            int valueIndex=0;
-            while(std::getline(stream,tmp,','))
+            if(camera_enables[cameraIndex])
             {
-                switch(valueIndex)
+                std::stringstream fileName;
+                fileName <<  fileDirectry << "/camera"<< cameraIndex <<"Pose.csv";
+
+                std::ifstream readingCSV(fileName.str().c_str());
+                std::string oneLine;
+
+                cameraIndexes.push_back(cameraIndex);
+                while(std::getline(readingCSV,oneLine))
                 {
-                    case 0:
-                        cameraIndexes.push_back(std::stod(tmp));
+                    std::string tmp;
+                    tf::Vector3 position;
+                    double quaternionValue[4];
+                    std::istringstream stream(oneLine);
+                    int valueIndex=0;
+                    
+                    while(std::getline(stream,tmp,','))
+                    {
+                        switch(valueIndex)
+                        {
+                            case 0:
+                                position.setX(std::stod(tmp));
+                            case 1:
+                                position.setY(std::stod(tmp));
+                            case 2:
+                                position.setZ(std::stod(tmp));
 
-                    case 1:
-                        position.setX(std::stod(tmp));
-                    case 2:
-                        position.setY(std::stod(tmp));
-                    case 3:
-                        position.setZ(std::stod(tmp));
-
-                    case 4:
-                        quaternionValue[0] = std::stod(tmp);
-                    case 5:
-                        quaternionValue[1] = std::stod(tmp);
-                    case 6:
-                        quaternionValue[2] = std::stod(tmp);
-                    case 7:
-                        quaternionValue[3] = std::stod(tmp);
+                            case 3:
+                                quaternionValue[0] = std::stod(tmp);
+                            case 4:
+                                quaternionValue[1] = std::stod(tmp);
+                            case 5:
+                                quaternionValue[2] = std::stod(tmp);
+                            case 6:
+                                quaternionValue[3] = std::stod(tmp);
+                        }
+                        valueIndex++;
+                    }
+                  
+                    tf::Quaternion quaternion(quaternionValue[0],quaternionValue[1],quaternionValue[2],quaternionValue[3]);
+                    tf::Transform cameraPose;
+                    cameraPose.setOrigin(position);
+                    cameraPose.setRotation(quaternion);
+                    cameraPoses.push_back(cameraPose);
+                    
                 }
-                valueIndex++;
-            }
-            if(valueIndex>0)
-            {
-                tf::Quaternion quaternion(quaternionValue[0],quaternionValue[1],quaternionValue[2],quaternionValue[3]);
-                tf::Transform cameraPose;
-                cameraPose.setOrigin(position);
-                cameraPose.setRotation(quaternion);
-                cameraPoses.push_back(cameraPose);
-                lineIndex++;
             }
         }
+    
         for(int tfIndex=0;tfIndex<cameraPoses.size();tfIndex++)
         {
             std::cout<<"camera:"<<cameraIndexes[tfIndex]<<std::endl;

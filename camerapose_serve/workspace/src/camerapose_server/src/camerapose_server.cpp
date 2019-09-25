@@ -12,9 +12,10 @@ class cameraPoseServer
 private:
     ros::NodeHandle                     _nh;
     tf::TransformBroadcaster            _br;
+    tf::TransformListener               _ls;
     ros::Timer timer                    = _nh.createTimer(ros::Duration(0.1), &cameraPoseServer::timerCallback,this);
     std::vector< tf::Transform > cameraPoses;
-    std::stringstream cameraLinkName;
+    
     std::string output_frame;
     std::string fileDirectry;
     
@@ -79,8 +80,9 @@ public:
                         }
                         valueIndex++;
                     }
-                  
-                    tf::Quaternion quaternion(quaternionValue[0],quaternionValue[1],quaternionValue[2],quaternionValue[3]);
+                    ROS_INFO("Readed Position,x:%f,y:%f,z:%f",position.getX(),position.getY(),position.getZ());
+                    ROS_INFO("Readed Rotation,x:%f,y:%f,z:%f,w:%f",quaternionValue[0],quaternionValue[1],quaternionValue[2],quaternionValue[3]);
+                    tf::Quaternion quaternion(tf::Vector3(quaternionValue[0],quaternionValue[1],quaternionValue[2]),quaternionValue[3]);
                     tf::Transform cameraPose;
                     cameraPose.setOrigin(position);
                     cameraPose.setRotation(quaternion);
@@ -105,14 +107,32 @@ public:
         for(int cameraPoseIndex=0;cameraPoseIndex<cameraPoses.size();cameraPoseIndex++)
         {
             this->broadcastCameraPose(cameraPoses[cameraPoseIndex],cameraPoseIndex);
+            this->listenCameraPose(cameraPoseIndex);
         }
     }
     void broadcastCameraPose(tf::Transform cameraPose,int cameraPoseIndex)
     {
-        cameraLinkName.str("");
-        cameraLinkName.clear(std::stringstream::goodbit);
+        std::stringstream cameraLinkName;
         cameraLinkName << "/env_cam0"<<cameraIndexes[cameraPoseIndex]<<output_frame;
         _br.sendTransform(tf::StampedTransform(cameraPose, ros::Time::now(),"map",cameraLinkName.str()));
+    }
+    void listenCameraPose(int cameraPoseIndex)
+    {
+        std::stringstream cameraLinkName;
+        cameraLinkName << "/env_cam0"<<cameraIndexes[cameraPoseIndex]<<output_frame;
+        tf::StampedTransform tfFromMapToCamera;
+        try{
+            _ls.lookupTransform( "map",  cameraLinkName.str(),ros::Time(0), tfFromMapToCamera);
+            std::cout<<"camera:"<<cameraPoseIndex<<std::endl;
+            std::cout<<"    Position"<<std::endl;
+            std::cout<<"        x:"<<tfFromMapToCamera.getOrigin().getX()<<" y:"<<tfFromMapToCamera.getOrigin().getY()<<" z:"<<tfFromMapToCamera.getOrigin().getZ()<<std::endl;
+            std::cout<<"    Quaternion"<<std::endl;
+            std::cout<<"        x:"<<tfFromMapToCamera.getRotation().getAxis().x()<<" y:"<<tfFromMapToCamera.getRotation().getAxis().y()<<" z:"<< tfFromMapToCamera.getRotation().getAxis().z()<<" w:"<<tfFromMapToCamera.getRotation().getW()<<std::endl;
+            std::cout<<std::endl;
+        }
+        catch (tf::TransformException ex){
+            //ROS_ERROR("%s",ex.what());
+        }
     }
 };
 

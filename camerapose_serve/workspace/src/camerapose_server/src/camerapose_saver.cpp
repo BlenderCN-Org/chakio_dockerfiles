@@ -12,6 +12,7 @@ class cameraPoseSaver
 private:
     ros::NodeHandle                     _nh;
     tf::TransformListener               _ls;
+    tf::TransformBroadcaster            _br;
     tf::Transform cameraPose;
     std::vector< std::vector < tf::Transform > > cameraPoseSamples;
     std::vector< std::vector < tf::Transform > > availableCameraPoseSamples;
@@ -110,7 +111,7 @@ public:
         else
         {
             ROS_INFO("#######calibrating completed#######");
-        }        
+        } 
     }
     bool getCameraPose(int cameraIndex)
     {
@@ -203,12 +204,12 @@ public:
 
                 tf::Transform averagePose = improvedAverageCameraPoses[cameraIndex];
                 tf::Vector3 averagePosition = averagePose.getOrigin();
-                tf::Quaternion averageQuaternion = averagePose.getRotation();
+                tf::Quaternion averageQuaternion = averagePose.getRotation().normalize ();
 
                 // Position
                 ssData << averagePosition.getX()<<","<<averagePosition.getY()<<","<<averagePosition.getZ()<<",";
                 //Quaternion
-                ssData << averageQuaternion.getAxis().x()<<","<< averageQuaternion.getAxis().y()<<","<< averageQuaternion.getAxis().z()<<","<< averageQuaternion.getW();
+                ssData << averageQuaternion.getAxis().x()<<","<< averageQuaternion.getAxis().y()<<","<< averageQuaternion.getAxis().z()<<","<< averageQuaternion.getAngle();
 
                 //add Data
                 data += ssData.str();
@@ -230,6 +231,15 @@ public:
             }
         }
         ROS_INFO("===complete calibration===");
+    }
+    void broadcastAvePose(tf::Transform cameraPose,int cameraPoseIndex)
+    {
+        tf::Transform tempCameraPose;
+        tempCameraPose.setOrigin(cameraPose.getOrigin());
+        tempCameraPose.setRotation(cameraPose.getRotation());
+        std::stringstream tfName;
+        tfName << "/env_cam0"<<cameraPoseIndex<<"_ave";
+        _br.sendTransform(tf::StampedTransform(tempCameraPose, ros::Time::now(),"map",tfName.str()));
     }
 };
 

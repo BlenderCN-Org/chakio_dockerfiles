@@ -126,7 +126,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/catkin_ws/build/gtest/cmake_install.cmake")
-  include("/catkin_ws/build/hsr_gazebo/cmake_install.cmake")
   include("/catkin_ws/build/printeps_hsr_modules/cmake_install.cmake")
 
 endif()

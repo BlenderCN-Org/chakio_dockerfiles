@@ -28,14 +28,6 @@
 /catkin_ws/build/gtest/gtest/CMakeFiles/gtest_main.dir
 /catkin_ws/build/gtest/gtest/CMakeFiles/install/strip.dir
 /catkin_ws/build/gtest/gtest/CMakeFiles/install/local.dir
-/catkin_ws/build/hsr_gazebo/CMakeFiles/rebuild_cache.dir
-/catkin_ws/build/hsr_gazebo/CMakeFiles/edit_cache.dir
-/catkin_ws/build/hsr_gazebo/CMakeFiles/list_install_components.dir
-/catkin_ws/build/hsr_gazebo/CMakeFiles/install.dir
-/catkin_ws/build/hsr_gazebo/CMakeFiles/_catkin_empty_exported_target.dir
-/catkin_ws/build/hsr_gazebo/CMakeFiles/install/local.dir
-/catkin_ws/build/hsr_gazebo/CMakeFiles/install/strip.dir
-/catkin_ws/build/hsr_gazebo/CMakeFiles/test.dir
 /catkin_ws/build/printeps_hsr_modules/CMakeFiles/rebuild_cache.dir
 /catkin_ws/build/printeps_hsr_modules/CMakeFiles/install/strip.dir
 /catkin_ws/build/printeps_hsr_modules/CMakeFiles/hsr_static_obstacle_server.dir

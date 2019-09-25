@@ -2,9 +2,9 @@
 	<arg name="output_frame" default="_link" />
 	<!-- position of ar_marker -->
 	<arg name="cam00_enable" default="true"/>
-	<arg name="cam01_enable" default="false"/>
-	<arg name="cam02_enable" default="false"/>
-	<arg name="cam03_enable" default="false"/>
+	<arg name="cam01_enable" default="true"/>
+	<arg name="cam02_enable" default="true"/>
+	<arg name="cam03_enable" default="true"/>
 	<arg name="cam04_enable" default="false"/>
 	<arg name="cam05_enable" default="false"/>
 	<arg name="cam06_enable" default="false"/>

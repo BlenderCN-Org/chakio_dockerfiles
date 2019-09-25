@@ -40,7 +40,7 @@ alias hsrb_mode='export ROS_MASTER_URI=http://${hsr_ip}:11311 export PS1="\[\033
 ## echo
 echo "ROS_IP:"$ROS_IP
 echo "ROS_MASTER_URI:"$ROS_MASTER_URI
-echo "==========================="
-echo "=LOADED GLOBAL ROS SETTING="
-echo "==========================="
+echo "=========================="
+echo "=LOADED LOCAL ROS SETTING="
+echo "=========================="
 

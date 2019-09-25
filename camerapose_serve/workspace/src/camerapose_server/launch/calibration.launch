@@ -1,39 +1,59 @@
 <launch>
 	<!-- option of camera pose estimation -->
 	<arg name="markerNum" default="4"/>
-	<arg name="sampleNum" default="1"/>
+	<arg name="sampleNum" default="100"/>
 	<arg name="samplingTime" default="0.3"/>
 	<arg name="image_enable" default="false"/>
 	<arg name="pcd_enable" default="true"/>
 	<arg name="distanceThreshold" default="0.1"/>
 
 	<!-- position of ar_marker -->
-	<arg name="cam00_enable" default="true"/>
+	<arg name="cam00_enable" default="false"/>
 	<arg name="cam01_enable" default="false"/>
-	<arg name="cam02_enable" default="false"/>
-	<arg name="cam03_enable" default="false"/>
+	<arg name="cam02_enable" default="true"/>
+	<arg name="cam03_enable" default="true"/>
 	<arg name="cam04_enable" default="false"/>
 	<arg name="cam05_enable" default="false"/>
 	<arg name="cam06_enable" default="false"/>
 	<arg name="cam07_enable" default="false"/>
 
 	<!-- position of ar_marker -->
-	<arg name="marker0_pos_x" default="0.76"/>
-	<arg name="marker0_pos_y" default="-0.24"/>
-	<arg name="marker0_pos_z" default="0.70"/>
+	<!-- for cam00,cam01 -->
+	<group if="$(arg cam00_enable)">
+		<arg name="marker0_pos_x" default="0.76"/>
+		<arg name="marker0_pos_y" default="-0.24"/>
+		<arg name="marker0_pos_z" default="0.70"/>
 
-	<arg name="marker1_pos_x" default="0.76"/>
-	<arg name="marker1_pos_y" default="0.24"/>
-	<arg name="marker1_pos_z" default="0.70"/>
-	
-	<arg name="marker2_pos_x" default="1.24"/>
-	<arg name="marker2_pos_y" default="-0.24"/>
-	<arg name="marker2_pos_z" default="0.70"/>
+		<arg name="marker1_pos_x" default="0.76"/>
+		<arg name="marker1_pos_y" default="0.24"/>
+		<arg name="marker1_pos_z" default="0.70"/>
+		
+		<arg name="marker2_pos_x" default="1.24"/>
+		<arg name="marker2_pos_y" default="-0.24"/>
+		<arg name="marker2_pos_z" default="0.70"/>
 
-	<arg name="marker3_pos_x" default="1.24"/>
-	<arg name="marker3_pos_y" default="0.24"/>
-	<arg name="marker3_pos_z" default="0.70"/>
-	
+		<arg name="marker3_pos_x" default="1.24"/>
+		<arg name="marker3_pos_y" default="0.24"/>
+		<arg name="marker3_pos_z" default="0.70"/>
+	</group>
+	<!-- for cam02,cam03 -->
+	<group if="$(arg cam02_enable)">
+		<arg name="marker0_pos_x" default="3.76"/>
+		<arg name="marker0_pos_y" default="-0.24"/>
+		<arg name="marker0_pos_z" default="0.70"/>
+
+		<arg name="marker1_pos_x" default="3.76"/>
+		<arg name="marker1_pos_y" default="0.24"/>
+		<arg name="marker1_pos_z" default="0.70"/>
+		
+		<arg name="marker2_pos_x" default="4.24"/>
+		<arg name="marker2_pos_y" default="-0.24"/>
+		<arg name="marker2_pos_z" default="0.70"/>
+
+		<arg name="marker3_pos_x" default="4.24"/>
+		<arg name="marker3_pos_y" default="0.24"/>
+		<arg name="marker3_pos_z" default="0.70"/>
+	</group>
 	<arg name="marker4_pos_x" default="4.00"/>
 	<arg name="marker4_pos_y" default="-0.50"/>
 	<arg name="marker4_pos_z" default="0.70"/>

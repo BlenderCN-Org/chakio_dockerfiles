@@ -1,8 +1,8 @@
 <launch>
 	<!-- option of camera pose estimation -->
 	<arg name="markerNum" default="4"/>
-	<arg name="sampleNum" default="100"/>
-	<arg name="samplingTime" default="0.3"/>
+	<arg name="sampleNum" default="200"/>
+	<arg name="samplingTime" default="0.5"/>
 	<arg name="image_enable" default="false"/>
 	<arg name="pcd_enable" default="true"/>
 	<arg name="distanceThreshold" default="0.1"/>
@@ -37,23 +37,23 @@
 		<arg name="marker3_pos_z" default="0.70"/>
 	</group>
 	<!-- for cam02,cam03 -->
-	<group if="$(arg cam02_enable)">
-		<arg name="marker0_pos_x" default="3.76"/>
-		<arg name="marker0_pos_y" default="-0.24"/>
-		<arg name="marker0_pos_z" default="0.70"/>
+	
+	<arg name="marker0_pos_x" default="3.76"/>
+	<arg name="marker0_pos_y" default="-0.24"/>
+	<arg name="marker0_pos_z" default="0.70"/>
 
-		<arg name="marker1_pos_x" default="3.76"/>
-		<arg name="marker1_pos_y" default="0.24"/>
-		<arg name="marker1_pos_z" default="0.70"/>
-		
-		<arg name="marker2_pos_x" default="4.24"/>
-		<arg name="marker2_pos_y" default="-0.24"/>
-		<arg name="marker2_pos_z" default="0.70"/>
+	<arg name="marker1_pos_x" default="3.76"/>
+	<arg name="marker1_pos_y" default="0.24"/>
+	<arg name="marker1_pos_z" default="0.70"/>
+	
+	<arg name="marker2_pos_x" default="4.24"/>
+	<arg name="marker2_pos_y" default="-0.24"/>
+	<arg name="marker2_pos_z" default="0.70"/>
 
-		<arg name="marker3_pos_x" default="4.24"/>
-		<arg name="marker3_pos_y" default="0.24"/>
-		<arg name="marker3_pos_z" default="0.70"/>
-	</group>
+	<arg name="marker3_pos_x" default="4.24"/>
+	<arg name="marker3_pos_y" default="0.24"/>
+	<arg name="marker3_pos_z" default="0.70"/>
+	
 	<arg name="marker4_pos_x" default="4.00"/>
 	<arg name="marker4_pos_y" default="-0.50"/>
 	<arg name="marker4_pos_z" default="0.70"/>
@@ -133,6 +133,7 @@
 		<param name="cam06_enable" value="$(arg cam06_enable)"/>
 		<param name="cam07_enable" value="$(arg cam07_enable)"/>
 		<param name="sampleNum" value="$(arg sampleNum)"/>
+		<param name="samplingTime" value="$(arg samplingTime)"/>
 		<param name="output_frame" value="$(arg output_frame)"/>
 		<param name="distanceThreshold" value="$(arg distanceThreshold)"/>
 	</node>

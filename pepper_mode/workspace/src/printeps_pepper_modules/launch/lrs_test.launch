@@ -1,0 +1,11 @@
+<launch>
+	<node pkg="urg_node" type="urg_node" name="lrs0">
+		<param name="angle_min"  	value="-0.7"/>
+		<param name="angle_max"		value="0.7"/>
+		<param name="ip_address" 	value="192.168.1.14"/>
+	</node>
+
+	<node pkg="jsk_rqt_plugins" type="rqt_histogram_plot" name="generic_array_plot2"
+				args="/scan"/>
+
+</launch>

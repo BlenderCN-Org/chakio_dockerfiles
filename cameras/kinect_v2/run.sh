@@ -7,7 +7,7 @@ docker run -it \
 --env="QT_X11_NO_MITSHM=1" \
 --rm \
 -v "/$(pwd)/ros_setting.sh:/ros_setting.sh" \
--v "/$(home)/kinect_calibration_data:/calibration_data" \
+-v "/$(pwd)/packages/calibration_data:/calibration_data" \
 -v /etc/group:/etc/group:ro \
 -v /etc/passwd:/etc/passwd:ro \
 --net host \

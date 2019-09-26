@@ -7,12 +7,12 @@
 	<arg name="lrf_frame_prefix" default="_link" />
 	<arg name="lrf_height" default="1.4" />
 
-	<arg name="pos_noise" default="0.03" />
-	<arg name="rot_noise" default="0.03" />
+	<arg name="pos_noise" default="0.02" />
+	<arg name="rot_noise" default="0.05" />
 
 	<arg name="enableVarX" default="0.006" />
 	<arg name="enableVarY" default="0.006" />
-	<arg name="enableVarT" default="0.004" />
+	<arg name="enableVarT" default="0.003" />
 
 	<arg name="lrf00_enable" default="true"/>
 	<arg name="lrf01_enable" default="true"/>

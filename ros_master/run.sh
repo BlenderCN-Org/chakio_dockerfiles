@@ -6,6 +6,7 @@ docker run -it \
 --env="QT_X11_NO_MITSHM=1" \
 --rm \
 -v "/$(pwd)/../global_setting/global_ros_setting.sh:/ros_setting.sh" \
+-v "/$(pwd)/workspace/:/catkin_ws/" \
 -v "/$(pwd)/startup.sh:/startup.sh" \
 -v /etc/group:/etc/group:ro \
 -v /etc/passwd:/etc/passwd:ro \

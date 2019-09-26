@@ -660,19 +660,6 @@ run_tests_ar_track_alvar_rostest/fast:
 .PHONY : run_tests_ar_track_alvar_rostest/fast
 
 #=============================================================================
-# Target rules for targets named run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_test_marker_arg_config-full.test
-
-# Build rule for target.
-run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_test_marker_arg_config-full.test: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_test_marker_arg_config-full.test
-.PHONY : run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_test_marker_arg_config-full.test
-
-# fast build rule for target.
-run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_test_marker_arg_config-full.test/fast:
-	$(MAKE) -f ar_track_alvar/ar_track_alvar/CMakeFiles/run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_test_marker_arg_config-full.test.dir/build.make ar_track_alvar/ar_track_alvar/CMakeFiles/run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_test_marker_arg_config-full.test.dir/build
-.PHONY : run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_test_marker_arg_config-full.test/fast
-
-#=============================================================================
 # Target rules for targets named run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_test_marker_param_config-full.test
 
 # Build rule for target.
@@ -684,6 +671,19 @@ run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_
 run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_test_marker_param_config-full.test/fast:
 	$(MAKE) -f ar_track_alvar/ar_track_alvar/CMakeFiles/run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_test_marker_param_config-full.test.dir/build.make ar_track_alvar/ar_track_alvar/CMakeFiles/run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_test_marker_param_config-full.test.dir/build
 .PHONY : run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_test_marker_param_config-full.test/fast
+
+#=============================================================================
+# Target rules for targets named run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_test_marker_arg_config-full.test
+
+# Build rule for target.
+run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_test_marker_arg_config-full.test: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_test_marker_arg_config-full.test
+.PHONY : run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_test_marker_arg_config-full.test
+
+# fast build rule for target.
+run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_test_marker_arg_config-full.test/fast:
+	$(MAKE) -f ar_track_alvar/ar_track_alvar/CMakeFiles/run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_test_marker_arg_config-full.test.dir/build.make ar_track_alvar/ar_track_alvar/CMakeFiles/run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_test_marker_arg_config-full.test.dir/build
+.PHONY : run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_test_marker_arg_config-full.test/fast
 
 #=============================================================================
 # Target rules for targets named run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_bundle.launch
@@ -2051,6 +2051,32 @@ _run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track
 .PHONY : _run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_bundle_no_kinect.launch/fast
 
 #=============================================================================
+# Target rules for targets named run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch
+
+# Build rule for target.
+run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch
+.PHONY : run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch
+
+# fast build rule for target.
+run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch/fast:
+	$(MAKE) -f ar_track_alvar/ar_track_alvar/CMakeFiles/run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch.dir/build.make ar_track_alvar/ar_track_alvar/CMakeFiles/run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch.dir/build
+.PHONY : run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch/fast
+
+#=============================================================================
+# Target rules for targets named _run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch
+
+# Build rule for target.
+_run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch
+.PHONY : _run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch
+
+# fast build rule for target.
+_run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch/fast:
+	$(MAKE) -f ar_track_alvar/ar_track_alvar/CMakeFiles/_run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch.dir/build.make ar_track_alvar/ar_track_alvar/CMakeFiles/_run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch.dir/build
+.PHONY : _run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch/fast
+
+#=============================================================================
 # Target rules for targets named _run_tests_ar_track_alvar_rostest_test_marker_param_config-full.test
 
 # Build rule for target.
@@ -2088,32 +2114,6 @@ _run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track
 _run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_indiv_no_kinect.launch/fast:
 	$(MAKE) -f ar_track_alvar/ar_track_alvar/CMakeFiles/_run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_indiv_no_kinect.launch.dir/build.make ar_track_alvar/ar_track_alvar/CMakeFiles/_run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_indiv_no_kinect.launch.dir/build
 .PHONY : _run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_indiv_no_kinect.launch/fast
-
-#=============================================================================
-# Target rules for targets named run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch
-
-# Build rule for target.
-run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch
-.PHONY : run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch
-
-# fast build rule for target.
-run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch/fast:
-	$(MAKE) -f ar_track_alvar/ar_track_alvar/CMakeFiles/run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch.dir/build.make ar_track_alvar/ar_track_alvar/CMakeFiles/run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch.dir/build
-.PHONY : run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch/fast
-
-#=============================================================================
-# Target rules for targets named _run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch
-
-# Build rule for target.
-_run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch
-.PHONY : _run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch
-
-# fast build rule for target.
-_run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch/fast:
-	$(MAKE) -f ar_track_alvar/ar_track_alvar/CMakeFiles/_run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch.dir/build.make ar_track_alvar/ar_track_alvar/CMakeFiles/_run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch.dir/build
-.PHONY : _run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch/fast
 
 #=============================================================================
 # Target rules for targets named camerapose_estimater
@@ -2218,8 +2218,8 @@ help:
 	@echo "... _run_tests_ar_track_alvar_rostest_test_marker_arg_config-basic.test"
 	@echo "... _run_tests_ar_track_alvar_rostest"
 	@echo "... run_tests_ar_track_alvar_rostest"
-	@echo "... run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_test_marker_arg_config-full.test"
 	@echo "... run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_test_marker_param_config-full.test"
+	@echo "... run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_test_marker_arg_config-full.test"
 	@echo "... run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_bundle.launch"
 	@echo "... nodelet_generate_messages_lisp"
 	@echo "... _run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_indiv.launch"
@@ -2325,11 +2325,11 @@ help:
 	@echo "... run_tests_ar_track_alvar_roslaunch-check"
 	@echo "... _run_tests_ar_track_alvar_roslaunch-check"
 	@echo "... _run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_bundle_no_kinect.launch"
+	@echo "... run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch"
+	@echo "... _run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch"
 	@echo "... _run_tests_ar_track_alvar_rostest_test_marker_param_config-full.test"
 	@echo "... actionlib_msgs_generate_messages_eus"
 	@echo "... _run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_indiv_no_kinect.launch"
-	@echo "... run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch"
-	@echo "... _run_tests_ar_track_alvar_roslaunch-check__catkin_ws_src_ar_track_alvar_ar_track_alvar_launch_pr2_train.launch"
 	@echo "... camerapose_estimater"
 	@echo "... camerapose_saver"
 	@echo "... arpose_server"

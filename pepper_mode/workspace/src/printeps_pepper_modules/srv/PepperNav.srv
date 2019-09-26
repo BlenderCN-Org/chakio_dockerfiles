@@ -1,4 +1,0 @@
-#@module_name pepper01/pepper_navigation
-geometry_msgs/Pose2D pose
----
-bool success

@@ -81,25 +81,6 @@ RUN apt-get update && apt-get install -y libopencv-dev \
       net-tools \
       gedit \
       ros-kinetic-map-server
-RUN curl -kL https://bootstrap.pypa.io/get-pip.py | python
-#######################################################################
-##                         catkin setting                            ##
-#######################################################################
-#init catkin_ws
-RUN mkdir -p /catkin_ws/src && \
-   cd /catkin_ws/src && \
-   /bin/bash -c 'source /opt/ros/kinetic/setup.bash;catkin_init_workspace' && \
-   cd /catkin_ws && \
-   /bin/bash -c 'source /opt/ros/kinetic/setup.bash;catkin_make' && \
-   cd /catkin_ws/src && \
-   git clone https://github.com/fkie/multimaster_fkie.git multimaster && \
-   /bin/bash -c 'source /opt/ros/kinetic/setup.bash; rosdep update' && \
-   /bin/bash -c 'source /opt/ros/kinetic/setup.bash; rosdep install -i --as-root pip:false --reinstall --from-paths -y multimaster'
-
-COPY /packages/ros_master /catkin_ws/src/ros_master
-RUN cd /catkin_ws && \
-   /bin/bash -c 'source /opt/ros/kinetic/setup.bash;catkin_make'
-RUN echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc
 #######################################################################
 ##                           ros settings                            ##
 #######################################################################

@@ -18,7 +18,7 @@
 	<arg name="lrf03_ip" default="192.168.1.61"/>
 
 	<node pkg="lrfpose_server" name="lrfpose_server"  type="lrfpose_server" output="screen"/>
-	<!--node pkg="rviz" type="rviz" name="lrfpose_server_rviz" args="-d $(find lrfpose_server)/rviz/lrfpose_server.rviz" /-->
+	<node pkg="rviz" type="rviz" name="lrfpose_server_rviz" args="-d $(find lrfpose_server)/rviz/lrfpose_server.rviz" />
 
 	<!-- cam00 -->
 	<group if="$(arg lrf00_enable)">

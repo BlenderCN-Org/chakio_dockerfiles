@@ -1,8 +1,0 @@
-prefix=/catkin_ws/install
-
-Name: printeps_pepper_modules
-Description: Description of printeps_pepper_modules
-Version: 0.0.0
-Cflags: -I/catkin_ws/install/include
-Libs: -L/catkin_ws/install/lib 
-Requires: 

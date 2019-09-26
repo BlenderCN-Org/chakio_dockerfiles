@@ -827,9 +827,9 @@ AmclNode::checkLaserReceived(const ros::TimerEvent& event)
         quaternionTFToMsg(quat, geometry_quat);
         cameraPose.pose.pose.orientation= geometry_quat;
         cameraPose.header.frame_id="map";
-        cameraPose.pose.covariance[0]=0.1;
-        cameraPose.pose.covariance[7]=0.1;
-        cameraPose.pose.covariance[35]=0.3;
+        cameraPose.pose.covariance[0]=0.9;
+        cameraPose.pose.covariance[7]=0.9;
+        cameraPose.pose.covariance[35]=0.5;
 
         this->handleInitialPoseMessage(cameraPose);
 

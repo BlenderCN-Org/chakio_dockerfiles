@@ -1,9 +1,9 @@
 <launch>
 
-  <arg name="base_name1"         default="env_cam00"/>
-  <arg name="sensor1"            default="501552342442"/>
-  <arg name="nodelet_manager1"   default="$(arg base_name1)"/>
-  <arg name="base_name_tf1"      default="/$(arg base_name1)"/>
+  <arg name="base_name"         default="env_cam00"/>
+  <arg name="sensor"            default="501552342442"/>
+  <arg name="nodelet_manager"   default="$(arg base_name)"/>
+  <arg name="base_name_tf"      default="/$(arg base_name)"/>
 
   <arg name="publish_tf"        default="true"/>
   <arg name="fps_limit"         default="5"/>
@@ -20,7 +20,7 @@
   <arg name="queue_size"        default="5"/>
   <arg name="bilateral_filter"  default="true"/>
   <arg name="edge_aware_filter" default="true"/>
-  <arg name="worker_threads"    default="4"/>
+  <arg name="worker_threads"    default="6"/>
   <arg name="machine"           default="localhost"/>
   <arg name="start_manager"     default="true"/>
   <arg name="use_machine"       default="true"/>
@@ -30,21 +30,17 @@
 
   <machine name="localhost" address="localhost" if="$(arg use_machine)"/>
 
-  <!---  -->
-  <!-- env_cam00 -->
-  <!---  -->
-
-  <node pkg="nodelet" type="nodelet" name="$(arg nodelet_manager1)" args="manager"
+  <node pkg="nodelet" type="nodelet" name="$(arg nodelet_manager)" args="manager"
         if="$(arg start_manager)" machine="$(arg machine)" output="screen"/>
 
   <!-- Nodelet version of kinect2_bridge -->
-  <node pkg="nodelet" type="nodelet" name="$(arg base_name1)_bridge" machine="$(arg machine)"
-        args="load kinect2_bridge/kinect2_bridge_nodelet $(arg nodelet_manager1)"
+  <node pkg="nodelet" type="nodelet" name="$(arg base_name)_bridge" machine="$(arg machine)"
+        args="load kinect2_bridge/kinect2_bridge_nodelet $(arg nodelet_manager)"
         respawn="$(arg respawn)" output="$(arg output)" if="$(arg use_nodelet)">
-    <param name="base_name"         type="str"    value="$(arg base_name1)"/>
-    <param name="sensor"            type="str"    value="$(arg sensor1)"/>
+    <param name="base_name"         type="str"    value="$(arg base_name)"/>
+    <param name="sensor"            type="str"    value="$(arg sensor)"/>
     <param name="publish_tf"        type="bool"   value="$(arg publish_tf)"/>
-    <param name="base_name_tf"      type="str"    value="$(arg base_name_tf1)"/>
+    <param name="base_name_tf"      type="str"    value="$(arg base_name_tf)"/>
     <param name="fps_limit"         type="double" value="$(arg fps_limit)"/>
     <param name="calib_path"        type="str"    value="$(arg calib_path)"/>
     <param name="use_png"           type="bool"   value="$(arg use_png)"/>
@@ -63,12 +59,12 @@
   </node>
 
   <!-- Node version of kinect2_bridge -->
-  <node pkg="kinect2_bridge" type="kinect2_bridge" name="$(arg base_name1)_bridge" machine="$(arg machine)"
+  <node pkg="kinect2_bridge" type="kinect2_bridge" name="$(arg base_name)_bridge" machine="$(arg machine)"
         respawn="$(arg respawn)" output="$(arg output)" unless="$(arg use_nodelet)">
-    <param name="base_name"         type="str"    value="$(arg base_name1)"/>
-    <param name="sensor"            type="str"    value="$(arg sensor1)"/>
+    <param name="base_name"         type="str"    value="$(arg base_name)"/>
+    <param name="sensor"            type="str"    value="$(arg sensor)"/>
     <param name="publish_tf"        type="bool"   value="$(arg publish_tf)"/>
-    <param name="base_name_tf"      type="str"    value="$(arg base_name_tf1)"/>
+    <param name="base_name_tf"      type="str"    value="$(arg base_name_tf)"/>
     <param name="fps_limit"         type="double" value="$(arg fps_limit)"/>
     <param name="calib_path"        type="str"    value="$(arg calib_path)"/>
     <param name="use_png"           type="bool"   value="$(arg use_png)"/>
@@ -87,38 +83,39 @@
   </node>
 
   <!-- sd point cloud (512 x 424) -->
-  <node pkg="nodelet" type="nodelet" name="$(arg base_name1)_points_xyzrgb_sd" machine="$(arg machine)"
-        args="load depth_image_proc/point_cloud_xyzrgb $(arg nodelet_manager1)" respawn="$(arg respawn)">
-    <remap from="rgb/camera_info"             to="$(arg base_name1)/sd/camera_info"/>
-    <remap from="rgb/image_rect_color"        to="$(arg base_name1)/sd/image_color_rect"/>
-    <remap from="depth_registered/image_rect" to="$(arg base_name1)/sd/image_depth_rect"/>
-    <remap from="depth_registered/points"     to="$(arg base_name1)/sd/points"/>
+  <node pkg="nodelet" type="nodelet" name="$(arg base_name)_points_xyzrgb_sd" machine="$(arg machine)"
+        args="load depth_image_proc/point_cloud_xyzrgb $(arg nodelet_manager)" respawn="$(arg respawn)">
+    <remap from="rgb/camera_info"             to="$(arg base_name)/sd/camera_info"/>
+    <remap from="rgb/image_rect_color"        to="$(arg base_name)/sd/image_color_rect"/>
+    <remap from="depth_registered/image_rect" to="$(arg base_name)/sd/image_depth_rect"/>
+    <remap from="depth_registered/points"     to="$(arg base_name)/sd/points"/>
     <param name="queue_size" type="int" value="$(arg queue_size)"/>
   </node>
 
   <!-- qhd point cloud (960 x 540) -->
-  <node pkg="nodelet" type="nodelet" name="$(arg base_name1)_points_xyzrgb_qhd" machine="$(arg machine)"
-        args="load depth_image_proc/point_cloud_xyzrgb $(arg nodelet_manager1)" respawn="$(arg respawn)">
-    <remap from="rgb/camera_info"             to="$(arg base_name1)/qhd/camera_info"/>
-    <remap from="rgb/image_rect_color"        to="$(arg base_name1)/qhd/image_color_rect"/>
-    <remap from="depth_registered/image_rect" to="$(arg base_name1)/qhd/image_depth_rect"/>
-    <remap from="depth_registered/points"     to="$(arg base_name1)/qhd/points"/>
+  <node pkg="nodelet" type="nodelet" name="$(arg base_name)_points_xyzrgb_qhd" machine="$(arg machine)"
+        args="load depth_image_proc/point_cloud_xyzrgb $(arg nodelet_manager)" respawn="$(arg respawn)">
+    <remap from="rgb/camera_info"             to="$(arg base_name)/qhd/camera_info"/>
+    <remap from="rgb/image_rect_color"        to="$(arg base_name)/qhd/image_color_rect"/>
+    <remap from="depth_registered/image_rect" to="$(arg base_name)/qhd/image_depth_rect"/>
+    <remap from="depth_registered/points"     to="$(arg base_name)/qhd/points"/>
     <param name="queue_size" type="int" value="$(arg queue_size)"/>
   </node>
 
   <!-- hd point cloud (1920 x 1080) -->
-  <node pkg="nodelet" type="nodelet" name="$(arg base_name1)_points_xyzrgb_hd" machine="$(arg machine)"
-        args="load depth_image_proc/point_cloud_xyzrgb $(arg nodelet_manager1)" respawn="$(arg respawn)">
-    <remap from="rgb/camera_info"             to="$(arg base_name1)/hd/camera_info"/>
-    <remap from="rgb/image_rect_color"        to="$(arg base_name1)/hd/image_color_rect"/>
-    <remap from="depth_registered/image_rect" to="$(arg base_name1)/hd/image_depth_rect"/>
-    <remap from="depth_registered/points"     to="$(arg base_name1)/hd/points"/>
+  <node pkg="nodelet" type="nodelet" name="$(arg base_name)_points_xyzrgb_hd" machine="$(arg machine)"
+        args="load depth_image_proc/point_cloud_xyzrgb $(arg nodelet_manager)" respawn="$(arg respawn)">
+    <remap from="rgb/camera_info"             to="$(arg base_name)/hd/camera_info"/>
+    <remap from="rgb/image_rect_color"        to="$(arg base_name)/hd/image_color_rect"/>
+    <remap from="depth_registered/image_rect" to="$(arg base_name)/hd/image_depth_rect"/>
+    <remap from="depth_registered/points"     to="$(arg base_name)/hd/points"/>
     <param name="queue_size" type="int" value="$(arg queue_size)"/>
   </node>
 
     // transform_pointcloud2
-  <node pkg="transform_pointcloud2" type="pointcloud2_transformer" name="transform_pcd_env_cam00" output="screen">
-    <param name="camera_name" value="$(arg base_name1)" />
+  <node pkg="transform_pointcloud2" type="pointcloud2_transformer" name="transform_pcd_$(arg base_name)" output="screen">
+    <param name="camera_name" value="$(arg base_name)" />
   </node>
 
 </launch>
+

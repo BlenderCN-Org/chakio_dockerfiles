@@ -1,7 +1,7 @@
 <launch>
 
-  <arg name="base_name"         default="env_cam02"/>
-  <arg name="sensor"            default="501460542442"/>
+  <arg name="base_name"         default="env_cam07"/>
+  <arg name="sensor"            default="000812360447"/>
   <arg name="nodelet_manager"   default="$(arg base_name)"/>
   <arg name="base_name_tf"      default="/$(arg base_name)"/>
 
@@ -118,4 +118,7 @@
   </node>
 
 </launch>
+
+
+
 

@@ -1,0 +1,2 @@
+node_manager
+exit

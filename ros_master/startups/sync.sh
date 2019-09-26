@@ -1,0 +1,2 @@
+roslaunch fkie_master_sync master_sync.launch
+exit

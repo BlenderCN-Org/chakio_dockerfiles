@@ -1,0 +1,4 @@
+#@module_name hsr_pick_up_object
+string object_id
+---
+bool success

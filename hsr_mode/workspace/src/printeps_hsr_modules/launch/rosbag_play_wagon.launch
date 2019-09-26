@@ -1,0 +1,9 @@
+<launch>
+
+      <!-- Display -->
+      <!--node pkg="rviz" type="rviz" name="rviz" args="-d $(find printeps_hsr_modules)/rviz/hsr_motion.rviz" /> --> 
+      
+
+      <node pkg="rosbag" type="play" name="player" output="screen" args="circlerotate10.bag" />     
+      <!--node pkg="rviz" type="rviz" name="rviz" args="-d $(find printeps_hsr_modules)/rviz/hsr_motion.rviz" /> -->
+</launch>

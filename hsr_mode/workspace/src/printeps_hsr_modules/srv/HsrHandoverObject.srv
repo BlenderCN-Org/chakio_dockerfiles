@@ -1,0 +1,5 @@
+#@module_name hsr_handover_object
+string place_id
+string object_name
+---
+bool success

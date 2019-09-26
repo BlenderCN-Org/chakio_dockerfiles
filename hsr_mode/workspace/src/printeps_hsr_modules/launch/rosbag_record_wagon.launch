@@ -1,0 +1,6 @@
+<launch>
+
+
+ <node pkg="rosbag" type="record" name="rosbag_record_wagon" output="screen"
+       args="record /amcl_pose /hsrb/base_scan /hsr_wagon_pose /map /robot_description /tf /tf_static /hsrb/base_pose /particlecloud /hsr_logging_command /hsr_wagon_world pub_num" />  
+</launch>

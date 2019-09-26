@@ -1,0 +1,6 @@
+#@module_name hsr_pick_and_place
+string                object_place
+string                destination
+string                object_name
+---
+bool success

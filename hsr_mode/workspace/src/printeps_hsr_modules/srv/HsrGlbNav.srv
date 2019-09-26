@@ -1,0 +1,4 @@
+#@module_name hsr_globalNavigation
+geometry_msgs/Pose2D  pose
+---
+bool success

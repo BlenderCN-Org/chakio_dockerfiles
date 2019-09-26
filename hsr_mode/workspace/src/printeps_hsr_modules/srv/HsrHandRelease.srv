@@ -1,0 +1,4 @@
+#@module_name hsr_hand_release
+string place_id
+---
+bool success

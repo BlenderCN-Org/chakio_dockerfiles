@@ -1,0 +1,3 @@
+
+HsrObstacle     table
+HsrObstacle[]   chairs

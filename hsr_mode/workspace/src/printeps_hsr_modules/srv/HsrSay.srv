@@ -1,0 +1,4 @@
+#@module_name hsr_say
+string words
+---
+bool success

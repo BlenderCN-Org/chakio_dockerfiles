@@ -1,0 +1,65 @@
+<launch>
+
+	// hsrb/** は元々HSR標準のパラメータであることを示す
+	// hsr/**は独自に作成したパラメータである
+
+	// Settings -----------------------------------------------------------------
+	<arg name="navigation_max_speed"		default="0.50" />
+	<arg name="navigation_max_turn"			default="0.80" />
+	<arg name="joy_max_speed"				    default="0.50" />
+	<arg name="joy_max_turn"				    default="1" />
+
+  
+  <!-- provide map -->
+  <node name="map_server" pkg="map_server" type="map_server"
+      args="$(find printeps_hsr_modules)/map/map.yaml" respawn="false" >
+      <param name="use_map_topic"   value="true"/>
+      <param name="frame_id" 				value="map" />
+  </node> 
+
+
+  <!-- additional LRF -->
+  <!--node ns="hsr_urg2" name="hsr_urg2" pkg="urg_node"  type="urg_node" output="screen">
+      <param name="ip_address"   value="192.168.1.28"/>
+      <param name="frame_id" 			value="hsr_urg2" />
+      <param name="angle_min"    type="double"    value="-2.1806" />
+      <param name="angle_max"   type="double"     value="2.1806" />
+      <remap from="scan" to="base_scan2"/>
+  </node --> 
+  <node pkg="tf" type="static_transform_publisher" name="robot_to_urg2" args="-0.35 0 0.23 3.14 0 0 /base_link /hsr_urg2 10" />
+
+  <!-- localizaion -->
+  <node pkg="amcl" type="amcl" name="hsr_amcl" output="screen">
+      <remap from="scan" to="hsrb/base_scan" />
+      <rosparam file="$(find printeps_hsr_modules)/config/amcl.yaml" command="load" />
+  </node>
+
+  <!-- HSR Motion service -->
+  
+  <node pkg="printeps_hsr_modules" name="hsr_say"                       type="hsr_say.py"                   output="screen"/>
+
+  <node pkg="printeps_hsr_modules" name="hsr_pick_and_place"            type="hsr_pick_and_place.py"        output="screen"/>
+  <node pkg="printeps_hsr_modules" name="hsr_pick_up_object"            type="hsr_pick_up_object.py"        output="screen"/>
+  <node pkg="printeps_hsr_modules" name="hsr_place_object"              type="hsr_place_object.py"          output="screen"/>
+  <node pkg="printeps_hsr_modules" name="hsr_handover_object"           type="hsr_handover_object.py"       output="screen"/>
+  
+  <node pkg="printeps_hsr_modules" name="hsr_openpose"                  type="hsr_openpose"                 output="screen"/>
+  <node pkg="printeps_hsr_modules" name="hsr_openpose_kalmanfilter"     type="hsr_openpose_kalmanfilter"    output="screen"/>
+
+  <node pkg="printeps_hsr_modules" name="hsr_carry"                     type="hsr_carry.py"                 output="screen"/>
+  <node pkg="printeps_hsr_modules" name="hsr_hold_object"               type="hsr_hold_object.py"           output="screen"/>
+  <node pkg="printeps_hsr_modules" name="hsr_release_object"            type="hsr_release_object.py"        output="screen"/>
+
+  <node pkg="printeps_hsr_modules" name="hsr_symbol_navigation"         type="hsr_symbol_navigation.py"     output="screen"/>
+  <node pkg="printeps_hsr_modules" name="hsr_global_navigation"         type="hsr_global_navigation"        output="screen"/>
+  <node pkg="printeps_hsr_modules" name="hsr_path_generator"            type="hsr_path_generator"           output="screen"/>
+  <node pkg="printeps_hsr_modules" name="hsr_trace"                     type="hsr_trace.py"                 output="screen"/>
+  <node pkg="printeps_hsr_modules" name="hsr_static_obstacle_server"    type="hsr_static_obstacle_server"   output="screen"/>
+
+  <node pkg="printeps_hsr_modules" name="hsr_is_active"                  type="hsr_is_active.py"              output="screen"/>
+
+  <!-- Load reasonable defaults for the relative pose between cameras -->
+  
+  <node name="Xtion_TF" pkg="tf" type="static_transform_publisher" output="screen" args="0.0 -0.03 -0.05 0.0 4.71 1.57 /head_center_camera_frame /camera_link 100" />
+  
+</launch>

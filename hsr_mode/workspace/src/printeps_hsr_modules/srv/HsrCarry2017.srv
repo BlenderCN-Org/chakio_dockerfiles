@@ -1,0 +1,5 @@
+#@module_name hsr_carry_2017
+string  pose_B
+string  pose_D
+---
+bool success

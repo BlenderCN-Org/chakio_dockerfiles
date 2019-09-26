@@ -245,7 +245,7 @@ RT_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/librt.so
 SETUPTOOLS_DEB_LAYOUT:BOOL=ON
 
 //Name of the computer/site where compile is being run
-SITE:STRING=ytpc2019a
+SITE:STRING=ytnpc2018b
 
 //LSB Distrib tag
 UBUNTU:BOOL=TRUE
@@ -352,12 +352,6 @@ gtest_force_shared_crt:BOOL=OFF
 
 //Dependencies for the target
 gtest_main_LIB_DEPENDS:STATIC=general;-lpthread;general;gtest;
-
-//Value Computed by CMake
-hsr_gazebo_BINARY_DIR:STATIC=/catkin_ws/build/hsr_gazebo
-
-//Value Computed by CMake
-hsr_gazebo_SOURCE_DIR:STATIC=/catkin_ws/src/hsr_gazebo
 
 //Path to a library.
 lib:FILEPATH=/opt/ros/kinetic/lib/libtf2.so

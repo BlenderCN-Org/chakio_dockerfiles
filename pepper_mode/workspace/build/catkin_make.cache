@@ -1,0 +1,2 @@
+naoqi_bridge/naoqi_apps:naoqi_bridge/naoqi_bridge:naoqi_bridge/naoqi_driver_py:naoqi_bridge/naoqi_navigation/python:naoqi_bridge/naoqi_pose:naoqi_bridge/naoqi_sensors_py:naoqi_bridge/naoqi_tools:naoqi_driver:printeps_pepper_modules
+-DCATKIN_DEVEL_PREFIX=/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/catkin_ws/install -G Unix Makefiles

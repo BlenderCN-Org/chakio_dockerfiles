@@ -1,0 +1,8 @@
+prefix=/catkin_ws/install
+
+Name: naoqi_driver_py
+Description: Description of naoqi_driver_py
+Version: 0.5.5
+Cflags: -I/catkin_ws/install/include
+Libs: -L/catkin_ws/install/lib 
+Requires: 

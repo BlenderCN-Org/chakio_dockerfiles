@@ -1,0 +1,1 @@
+docker build --tag docker_pepper:latest  .

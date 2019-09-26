@@ -1,0 +1,7 @@
+# @module_name printeps/dialogue/pepper_speak
+# @description Pepperに発話させるためのサービス
+# @creator Yamaguchi CREST PRINTEPS Team
+string ip_address
+string contents
+---
+bool success

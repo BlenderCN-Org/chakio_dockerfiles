@@ -1,2 +1,2 @@
-hsr_gazebo:printeps_hsr_modules
+printeps_hsr_modules
 -DCATKIN_DEVEL_PREFIX=/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/catkin_ws/install -G Unix Makefiles

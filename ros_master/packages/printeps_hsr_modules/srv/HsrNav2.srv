@@ -1,0 +1,6 @@
+#@module_name hsr_navigation2
+geometry_msgs/Pose2D  pose
+bool                  obstacle_avoidance
+bool                  first_rot
+---
+bool success

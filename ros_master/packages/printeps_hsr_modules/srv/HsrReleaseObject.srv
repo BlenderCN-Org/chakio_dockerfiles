@@ -1,0 +1,4 @@
+#@module_name hsr_release_object
+string place_id
+---
+bool success

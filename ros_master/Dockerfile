@@ -97,6 +97,8 @@ RUN mkdir -p /catkin_ws/src && \
    /bin/bash -c 'source /opt/ros/kinetic/setup.bash; rosdep install -i --as-root pip:false --reinstall --from-paths -y multimaster'
 
 COPY /packages/ros_master /catkin_ws/src/ros_master
+COPY /packages/printeps_hsr_modules /catkin_ws/src/printeps_hsr_modules
+COPY /packages/printeps_cafe_srvs /catkin_ws/src/printeps_cafe_srvs
 RUN cd /catkin_ws && \
    /bin/bash -c 'source /opt/ros/kinetic/setup.bash;catkin_make'
 RUN echo "source /catkin_ws/devel/setup.bash" >> ~/.bashrc

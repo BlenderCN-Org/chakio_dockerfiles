@@ -1,0 +1,7 @@
+#@module_name hsr_log_p
+
+bool log
+bool PCD
+string mode
+---
+bool success

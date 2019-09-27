@@ -1,0 +1,9 @@
+#@module_name pathGenerator
+geometry_msgs/Pose2D    start
+geometry_msgs/Pose2D    goal
+geometry_msgs/PoseArray dynamicObstacle
+std_msgs/Bool           multimodalPathplanning
+std_msgs/Float64         voiceImportance
+---
+geometry_msgs/PoseArray path
+std_msgs/Float32 length

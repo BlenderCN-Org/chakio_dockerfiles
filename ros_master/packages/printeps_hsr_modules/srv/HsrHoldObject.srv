@@ -1,0 +1,4 @@
+#@module_name hsr_hold_object
+string place_id
+---
+bool success

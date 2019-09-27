@@ -1,0 +1,11 @@
+#@module_name hsr_log
+
+bool log
+bool IMU
+bool LRF
+bool Wrist
+bool Joint
+bool TF
+string mode
+---
+bool success

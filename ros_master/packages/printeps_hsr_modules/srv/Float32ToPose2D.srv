@@ -1,0 +1,8 @@
+# @module_name printeps/float32_to_pose2d
+# @description float32 から pose2d への変換
+# @creator Yamaguchi CREST PRINTEPS Team
+float32 x
+float32 y
+float32 theta
+---
+geometry_msgs/Pose2D pose2d

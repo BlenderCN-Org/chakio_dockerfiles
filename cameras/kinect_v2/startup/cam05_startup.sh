@@ -1,2 +1,0 @@
-roslaunch kinect2_bridge kinect2_bridge_cam05.launch
-exit

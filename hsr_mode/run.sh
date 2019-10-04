@@ -7,6 +7,7 @@ docker run -it \
 --rm \
 -v "/$(pwd)/../global_setting/global_ros_setting.sh:/ros_setting.sh" \
 -v "/home/$(whoami)/chakio_hsr_ws/:/catkin_ws/" \
+-v "/home/$(whoami)/catkin_ws/src/printeps_navigation/:/catkin_ws/src/printeps_navigation/" \
 -v /etc/group:/etc/group:ro \
 -v /etc/passwd:/etc/passwd:ro \
 --privileged \
